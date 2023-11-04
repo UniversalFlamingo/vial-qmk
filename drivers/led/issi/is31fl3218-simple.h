@@ -23,20 +23,18 @@
 #define IS31FL3218_I2C_ADDRESS 0x54
 
 typedef struct is31fl3218_led_t {
-    uint8_t r;
-    uint8_t g;
-    uint8_t b;
+    uint8_t v;
 } __attribute__((packed)) is31fl3218_led_t;
 
-extern const is31fl3218_led_t PROGMEM g_is31fl3218_leds[RGB_MATRIX_LED_COUNT];
+extern const is31fl3218_led_t PROGMEM g_is31fl3218_leds[LED_MATRIX_LED_COUNT];
 
 void is31fl3218_init(void);
 
-void is31fl3218_set_color(int index, uint8_t red, uint8_t green, uint8_t blue);
+void is31fl3218_set_value(int index, uint8_t value);
 
-void is31fl3218_set_color_all(uint8_t red, uint8_t green, uint8_t blue);
+void is31fl3218_set_value_all(uint8_t value);
 
-void is31fl3218_set_led_control_register(uint8_t index, bool red, bool green, bool blue);
+void is31fl3218_set_led_control_register(uint8_t index, bool value);
 
 void is31fl3218_update_pwm_buffers(void);
 

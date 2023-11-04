@@ -88,51 +88,35 @@ void is31fl3218_init(void) {
     is31fl3218_write_register(IS31FL3218_REG_UPDATE, 0x01);
 }
 
-void is31fl3218_set_color(int index, uint8_t red, uint8_t green, uint8_t blue) {
+void is31fl3218_set_value(int index, uint8_t value) {
     is31fl3218_led_t led;
-    if (index >= 0 && index < RGB_MATRIX_LED_COUNT) {
+    if (index >= 0 && index < LED_MATRIX_LED_COUNT) {
         memcpy_P(&led, (&g_is31fl3218_leds[index]), sizeof(led));
     }
-    if (g_pwm_buffer[led.r - IS31FL3218_REG_PWM] == red && g_pwm_buffer[led.g - IS31FL3218_REG_PWM] == green && g_pwm_buffer[led.b - IS31FL3218_REG_PWM] == blue) {
+    if (g_pwm_buffer[led.v - IS31FL3218_REG_PWM] == value) {
         return;
     }
-    g_pwm_buffer[led.r - IS31FL3218_REG_PWM] = red;
-    g_pwm_buffer[led.g - IS31FL3218_REG_PWM] = green;
-    g_pwm_buffer[led.b - IS31FL3218_REG_PWM] = blue;
+    g_pwm_buffer[led.v - IS31FL3218_REG_PWM] = value;
     g_pwm_buffer_update_required             = true;
 }
 
-void is31fl3218_set_color_all(uint8_t red, uint8_t green, uint8_t blue) {
-    for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
-        is31fl3218_set_color(i, red, green, blue);
+void is31fl3218_set_value_all(uint8_t value) {
+    for (int i = 0; i < LED_MATRIX_LED_COUNT; i++) {
+        is31fl3218_set_value(i, value);
     }
 }
 
-void is31fl3218_set_led_control_register(uint8_t index, bool red, bool green, bool blue) {
+void is31fl3218_set_led_control_register(uint8_t index, bool value) {
     is31fl3218_led_t led;
     memcpy_P(&led, (&g_is31fl3218_leds[index]), sizeof(led));
 
-    uint8_t control_register_r = (led.r - IS31FL3218_REG_PWM) / 6;
-    uint8_t control_register_g = (led.g - IS31FL3218_REG_PWM) / 6;
-    uint8_t control_register_b = (led.b - IS31FL3218_REG_PWM) / 6;
-    uint8_t bit_r              = (led.r - IS31FL3218_REG_PWM) % 6;
-    uint8_t bit_g              = (led.g - IS31FL3218_REG_PWM) % 6;
-    uint8_t bit_b              = (led.b - IS31FL3218_REG_PWM) % 6;
+    uint8_t control_register = (led.v - IS31FL3218_REG_PWM) / 6;
+    uint8_t bit_value        = (led.v - IS31FL3218_REG_PWM) % 6;
 
-    if (red) {
-        g_led_control_registers[control_register_r] |= (1 << bit_r);
+    if (value) {
+        g_led_control_registers[control_register] |= (1 << bit_value);
     } else {
-        g_led_control_registers[control_register_r] &= ~(1 << bit_r);
-    }
-    if (green) {
-        g_led_control_registers[control_register_g] |= (1 << bit_g);
-    } else {
-        g_led_control_registers[control_register_g] &= ~(1 << bit_g);
-    }
-    if (blue) {
-        g_led_control_registers[control_register_b] |= (1 << bit_b);
-    } else {
-        g_led_control_registers[control_register_b] &= ~(1 << bit_b);
+        g_led_control_registers[control_register] &= ~(1 << bit_value);
     }
 
     g_led_control_registers_update_required = true;
