@@ -15,6 +15,8 @@
  */
 #include QMK_KEYBOARD_H
 
+#include "custom_keycodes.h"
+
 enum layers {
   _QWERTY,
   _LOWER,
@@ -38,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT_ortho_4x12_1x2uC(
     QK_GESC, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,  KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,  KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,  KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SC_SENT,
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,  KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RSFT_T(KC_ENTER),
     RGB_TOG, KC_LCTL, KC_LALT, KC_LGUI, TL_LOWR, KC_SPC,         TL_UPPR, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
@@ -91,10 +93,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT_ortho_4x12_1x2uC(
-    _______, _______, RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, _______, BL_TOGG, _______, _______, _______,
-    _______, _______, _______, RGB_RMOD,RGB_HUD, RGB_SAD, RGB_VAD, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, QK_BOOT
+    _______,  RGB_TOG, RGB_MOD,  RGB_HUI, RGB_SAI, RGB_VAI, _______, B_RGBL_TOG, B_RGBL_MOD,  B_RGBL_HUI, B_RGBL_SAI, B_RGBL_VAI,
+    _______,  _______, RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD, _______, _______,    B_RGBL_RMOD, B_RGBL_HUD, B_RGBL_SAD, B_RGBL_VAD,
+    _______,  _______, _______,  RGB_M_P, RGB_M_B, RGB_M_T, _______, _______,    _______,     B_RGBL_M_P, B_RGBL_M_B, B_RGBL_M_T,
+    B_MJM_TG, _______, _______,  _______, _______, _______,          _______,    _______,     _______,    _______,    QK_BOOT
 )
 
 };

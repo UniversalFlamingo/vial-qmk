@@ -7,6 +7,83 @@
         "rows": 4,
         "cols": 12
     },
+    "customKeycodes": [
+        {
+            "name": "mousejiggler",
+            "shortName": "B_MJM_TG",
+            "title": "mousejiggler toggle"
+        },
+        {
+            "name": "Underglow",
+            "shortName": "B_RGBL_TOG",
+            "title": "Underglow TOG"
+        },
+        {
+            "name": "UnderglowNext",
+            "shortName": "B_RGBL_MOD",
+            "title": "Underglow MODE_FORWARD"
+        },
+        {
+            "name": "UnderglowPrev",
+            "shortName": "B_RGBL_RMOD",
+            "title": "Underglow MODE_REVERSE"
+        },
+        {
+            "name": "UnderglowHUI",
+            "shortName": "B_RGBL_HUI",
+            "title": "Underglow HUI"
+        },
+        {
+            "name": "UnderglowHUD",
+            "shortName": "B_RGBL_HUD",
+            "title": "Underglow HUD"
+        },
+        {
+            "name": "UnderglowSAI",
+            "shortName": "B_RGBL_SAI",
+            "title": "Underglow SAI"
+        },
+        {
+            "name": "UnderglowSAD",
+            "shortName": "B_RGBL_SAD",
+            "title": "Underglow SAD"
+        },
+        {
+            "name": "UnderglowVAI",
+            "shortName": "B_RGBL_VAI",
+            "title": "Underglow VAI"
+        },
+        {
+            "name": "UnderglowVAD",
+            "shortName": "B_RGBL_VAD",
+            "title": "Underglow VAD"
+        },
+        {
+            "name": "UnderglowSPI",
+            "shortName": "B_RGBL_SPI",
+            "title": "Underglow SPI"
+        },
+        {
+            "name": "UnderglowSPD",
+            "shortName": "B_RGBL_SPD",
+            "title": "Underglow SPD"
+        },
+        {
+            "name": "UnderglowMODE_PLAIN",
+            "shortName": "B_RGBL_M_P",
+            "title": "Underglow MODE_PLAIN"
+        },
+        {
+            "name": "UnderglowMODE_BREATHE",
+            "shortName": "B_RGBL_M_B",
+            "title": "Underglow MODE_BREATHE"
+        },
+        {
+            "name": "UnderglowMODE_RGBTEST",
+            "shortName": "B_RGBL_M_T",
+            "title": "Underglow MODE_RGBTEST"
+        }
+    ],
     "layouts": {
         "keymap": [
             [
