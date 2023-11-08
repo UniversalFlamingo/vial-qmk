@@ -23,9 +23,10 @@ COMBO_ENABLE = no
 DYNAMIC_MACRO_ENABLE = no
 ENCODER_ENABLE = no
 MAGIC_ENABLE = no
-QMK_SETTINGS = no
+MOUSEKEYS_ENABLE = no
 MUSIC_ENABLE = no
-
-SRC += my_process_record.c my_process_rgb.c mousejiggler.c
-
+POINTING_DEVICE_ENABLE = no
+QMK_SETTINGS = no
 SECURE_ENABLE = no
+
+SRC += process_record.c process_rgb_keycodes.c mousejiggler.c

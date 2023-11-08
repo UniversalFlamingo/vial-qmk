@@ -1,69 +1,92 @@
+/*
+ * This is modeled after quantum/caps_word.{c,h}
+ */
+
 #include QMK_KEYBOARD_H
+
+#include <stdint.h>
+#include "timer.h"
+#include "action.h"
+#include "action_util.h"
 
 #include "config.h"
 #include "custom_keycodes.h"
+#include "mousejiggler.h"
 
-static bool mouse_jiggle_mode = false;
-static uint16_t mouse_jiggle_timer = 0;
+/** @brief True when MouseJiggler is active. */
+static bool mousejiggler_active = false;
 
-// See https://github.com/qmk/qmk_firmware/blob/master/docs/feature_pointing_device.md#custom-driver
-/*
- * Create a fake pointing device. This uses less space than MOUSEKEY_ENABLE.
- * Add to rules.mk:
- *  POINTING_DEVICE_ENABLE = yes
- *  POINTING_DEVICE_DRIVER = custom
- */
-void           pointing_device_driver_init(void) {}
-report_mouse_t pointing_device_driver_get_report(report_mouse_t mouse_report) { return mouse_report; }
-uint16_t       pointing_device_driver_get_cpi(void) { return MOUSE_JIGGLER_CPI; }
-void           pointing_device_driver_set_cpi(uint16_t cpi) {}
+#if MOUSEJIGGLER_TIMEOUT > 0
+#    if MOUSEJIGGLER_TIMEOUT < 100 || MOUSEJIGGLER_TIMEOUT > 30000
+#        error "MOUSEJIGGLER_TIMEOUT must be between 100 and 60000 ms"
+#    endif
+#    if MOUSEJIGGLER_MULTIPLIER < 1 || MOUSEJIGGLER_MULTIPLIER > 60
+#        error "MOUSEJIGGLER_MULTIPLIER must be between 1 and 60"
+#    endif
 
-void my_mouse_jiggler_matrix_scan(void) {
+/** @brief Deadline for idle timeout. */
+static uint16_t idle_timer = 0;
+static uint8_t multiplier = 0;
 
-  if(!mouse_jiggle_mode) { return; }
-  if(!mouse_jiggle_timer) { return; }
+static void mousejiggler_send_keepalive(void) {
 
-  // See https://getreuer.info/posts/keyboards/triggers/#when-idle-for-x-milliseconds
-  uint16_t timer = timer_read();
-  if (!timer_expired(timer, mouse_jiggle_timer)) { return; }
+    // Turn on underglow LEDs.
+    rgblight_enable_noeeprom();
 
-  // If execution reaches here, the keyboard has gone idle. Increment the timer.
-  mouse_jiggle_timer = (mouse_jiggle_timer + MOUSE_JIGGLE_TIMEOUT_MS) | 1;
+    tap_code(KC_CAPS);
+    tap_code(KC_NUM);
+    _delay_ms(TAP_HOLD_CAPS_DELAY);
+    tap_code(KC_CAPS);
+    tap_code(KC_NUM);
 
-  // Turn on underglow LEDs.
-  rgblight_enable_noeeprom();
-
-  // See https://github.com/DIYCharles/MouseJiggler/
-  tap_code(KC_MS_UP);
-  tap_code(KC_MS_DOWN);
-  tap_code(KC_MS_LEFT);
-  tap_code(KC_MS_RIGHT);
-  tap_code(KC_MS_WH_UP);
-  tap_code(KC_MS_WH_DOWN);
 }
 
-bool my_mouse_jiggler(const uint16_t keycode, const keyrecord_t *record) {
-
-  if(B_MJM_TG != keycode) { return true; }
-
-  if (record->event.pressed) {
-    mouse_jiggle_mode = !mouse_jiggle_mode;
-    if(mouse_jiggle_mode) {
-        rgblight_enable_noeeprom();
+void mousejiggler_task(void) {
+    if(mousejiggler_active && timer_expired(timer_read(), idle_timer)) {
+      if(!multiplier) { mousejiggler_send_keepalive(); }
+      mousejiggler_reset_idle_timer();
     }
-    else {
-        rgblight_disable_noeeprom();
+}
+
+#else
+void mousejiggler_task(void) {}
+#endif // MOUSEJIGGLER_TIMEOUT > 0
+
+void mousejiggler_reset_idle_timer(void) {
+    if(multiplier) {
+      multiplier -= 1;
+    } else {
+      multiplier = MOUSEJIGGLER_MULTIPLIER - 1;
     }
-  }
+    idle_timer = (timer_read() + MOUSEJIGGLER_TIMEOUT) | 1;
+}
 
-  // On every key event, set mouse_jiggle_timer to expire after MOUSE_JIGGLE_TIMEOUT_MS.
-  // We use mouse_jiggle_timer == 0 to indicate that the timer is inactive, so
-  // the value is bitwise or'd with 1 to ensure it is nonzero.
-  // See https://github.com/DIYCharles/MouseJiggler/
-  if(mouse_jiggle_mode) {
-    mouse_jiggle_timer = (record->event.time + MOUSE_JIGGLE_TIMEOUT_MS) | 1;
-  }
+void mousejiggler_on(void) {
+#if MOUSEJIGGLER_TIMEOUT > 0
+    rgblight_enable_noeeprom();
+    if(!mousejiggler_active) {
+        multiplier = MOUSEJIGGLER_MULTIPLIER - 1;
+        mousejiggler_reset_idle_timer();
+    }
+#endif // MOUSEJIGGLER_TIMEOUT > 0
+    mousejiggler_active = true;
+}
 
-  return false; // Skip default handling
+void mousejiggler_off(void) {
+#if MOUSEJIGGLER_TIMEOUT > 0
+    rgblight_disable_noeeprom();
+#endif // MOUSEJIGGLER_TIMEOUT > 0
+    mousejiggler_active = false;
+}
 
+void mousejiggler_toggle(void) {
+    if(mousejiggler_active) {
+        mousejiggler_off();
+    } else {
+        mousejiggler_on();
+    }
+}
+
+bool is_mousejiggler_on(void) {
+    return mousejiggler_active;
 }

@@ -6,10 +6,10 @@ enum custom_keycodes {
 
   B_MJM_TG = QK_KB_0,  // toggle mouse-jiggle mode
 
-//   B_RGBL_TG,           // rgblight_toggle_noeeprom   -- LEDs below the PCB (i.e. - underglow)
+//   B_RGBL_TG,           // rgblight_toggle_noeeprom   -- LEDs below the PCB (i.e. - underlight)
 //   B_RGBM_TG,           // rgb_matrix_toggle_noeeprom -- per-key LEDs
 
-  // Underglow equivalents of the matrix keycodes.
+  // underlight equivalents of the matrix keycodes.
   B_RGBL_TOG,
   B_RGBL_MOD,  // MODE_FORWARD,
   B_RGBL_RMOD, // MODE_REVERSE,
