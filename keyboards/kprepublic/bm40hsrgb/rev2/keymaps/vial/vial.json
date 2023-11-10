@@ -21,67 +21,62 @@
         {
             "name": "UnderglowNext",
             "shortName": "B_RGBL_MOD",
-            "title": "Underglow MODE_FORWARD"
+            "title": "UnderglowNext"
         },
         {
             "name": "UnderglowPrev",
             "shortName": "B_RGBL_RMOD",
-            "title": "Underglow MODE_REVERSE"
+            "title": "UnderglowPrev"
         },
         {
             "name": "UnderglowHUI",
             "shortName": "B_RGBL_HUI",
-            "title": "Underglow HUI"
+            "title": "UnderglowHUI"
         },
         {
             "name": "UnderglowHUD",
             "shortName": "B_RGBL_HUD",
-            "title": "Underglow HUD"
+            "title": "UnderglowHUD"
         },
         {
             "name": "UnderglowSAI",
             "shortName": "B_RGBL_SAI",
-            "title": "Underglow SAI"
+            "title": "UnderglowSAI"
         },
         {
             "name": "UnderglowSAD",
             "shortName": "B_RGBL_SAD",
-            "title": "Underglow SAD"
+            "title": "UnderglowSAD"
         },
         {
             "name": "UnderglowVAI",
             "shortName": "B_RGBL_VAI",
-            "title": "Underglow VAI"
+            "title": "UnderglowVAI"
         },
         {
             "name": "UnderglowVAD",
             "shortName": "B_RGBL_VAD",
-            "title": "Underglow VAD"
+            "title": "UnderglowVAD"
         },
         {
             "name": "UnderglowSPI",
             "shortName": "B_RGBL_SPI",
-            "title": "Underglow SPI"
+            "title": "UnderglowSPI"
         },
         {
             "name": "UnderglowSPD",
             "shortName": "B_RGBL_SPD",
-            "title": "Underglow SPD"
+            "title": "UnderglowSPD"
         },
         {
-            "name": "UnderglowMODE_PLAIN",
+            "name": "UnderglowPLAIN",
             "shortName": "B_RGBL_M_P",
-            "title": "Underglow MODE_PLAIN"
+            "title": "UnderglowPLAIN"
         },
         {
-            "name": "UnderglowMODE_BREATHE",
+            "name": "UnderglowBREATHE",
             "shortName": "B_RGBL_M_B",
-            "title": "Underglow MODE_BREATHE"
-        },
-        {
-            "name": "UnderglowMODE_RGBTEST",
-            "shortName": "B_RGBL_M_T",
-            "title": "Underglow MODE_RGBTEST"
+            "title": "UnderglowBREATHE"
         }
     ],
     "layouts": {

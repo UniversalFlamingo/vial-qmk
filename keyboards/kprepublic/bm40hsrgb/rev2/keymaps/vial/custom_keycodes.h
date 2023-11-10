@@ -23,5 +23,5 @@ enum custom_keycodes {
   B_RGBL_SPD,
   B_RGBL_M_P,  // MODE_PLAIN
   B_RGBL_M_B,  // MODE_BREATHE
-  B_RGBL_M_T,  // MODE_RGBTEST
+  // B_RGBL_M_T,  // MODE_RGBTEST
 };

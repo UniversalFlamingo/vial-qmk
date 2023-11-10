@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] = LAYOUT_ortho_4x12_1x2uC(
     _______,  RGB_TOG, RGB_MOD,  RGB_HUI, RGB_SAI, RGB_VAI, _______, B_RGBL_TOG, B_RGBL_MOD,  B_RGBL_HUI, B_RGBL_SAI, B_RGBL_VAI,
     _______,  _______, RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD, _______, _______,    B_RGBL_RMOD, B_RGBL_HUD, B_RGBL_SAD, B_RGBL_VAD,
-    _______,  _______, _______,  RGB_M_P, RGB_M_B, RGB_M_T, _______, _______,    _______,     B_RGBL_M_P, B_RGBL_M_B, B_RGBL_M_T,
+    _______,  _______, _______,  RGB_M_P, RGB_M_B, RGB_M_T, _______, _______,    _______,     B_RGBL_M_P, B_RGBL_M_B, _______,
     B_MJM_TG, _______, _______,  _______, _______, _______,          _______,    _______,     _______,    _______,    QK_BOOT
 )
 

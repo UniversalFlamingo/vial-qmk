@@ -2,6 +2,9 @@
 
 #pragma once
 
+#ifndef VIAL_ENABLE
+#  define VIAL_ENABLE
+#endif
 #define VIAL_KEYBOARD_UID {0x55, 0x53, 0xE7, 0xBC, 0x9D, 0x8E, 0x02, 0x7B}
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 4
@@ -16,16 +19,24 @@
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 #define RGB_MATRIX_KEYPRESSES
 
-#define BACKLIGHT_BREATHING
-
+#undef BACKLIGHT_BREATHING
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
+#undef RGBLIGHT_LAYERS
+#define RGBLIGHT_MAX_LAYERS 0
 
-#define NO_DEBUG
-#define NO_MUSIC_MODE
+#ifndef NO_DEBUG
+#  define NO_DEBUG
+#endif
+#ifndef NO_MUSIC_MODE
+#  define NO_MUSIC_MODE
+#endif
+#ifndef NO_PRINT
+#  define NO_PRINT
+#endif
 
-// #define RGBLIGHT_ENABLE
-// #define RGB_MATRIX_ENABLE
+// #define RGBLIGHT_ENABLE // Enabled in info.json
+// #define RGB_MATRIX_ENABLE // Enabled in info.json
 #define RGBLIGHT_DISABLE_KEYCODES
 #define RGB_MATRIX_DISABLE_KEYCODES
 

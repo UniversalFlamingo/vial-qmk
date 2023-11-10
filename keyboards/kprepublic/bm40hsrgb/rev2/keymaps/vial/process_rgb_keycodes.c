@@ -257,7 +257,7 @@ bool process_rgb_keycodes(const uint16_t keycode, const keyrecord_t *record) {
 #endif
                 return false;
 */
-            case B_RGBL_M_T:  // B_RGBL_MODE_RGBTEST:
+            // case B_RGBL_M_T:  // B_RGBL_MODE_RGBTEST:
             case RGB_MODE_RGBTEST:
 #if defined(RGBLIGHT_ENABLE) && defined(RGBLIGHT_DISABLE_KEYCODES) && defined(RGBLIGHT_EFFECT_RGB_TEST)
                 rgblight_mode(RGBLIGHT_MODE_RGB_TEST);
