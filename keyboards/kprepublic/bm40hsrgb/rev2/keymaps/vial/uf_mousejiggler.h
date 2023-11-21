@@ -6,11 +6,14 @@
 
 #include <stdbool.h>
 
+#include "config.h"
+
 #ifndef MOUSEJIGGLER_TIMEOUT
-#    define MOUSEJIGGLER_TIMEOUT 30000 // Default timeout of 60 seconds.
+#  define MOUSEJIGGLER_TIMEOUT 30000  // Default timeout of 60 seconds.
 #endif
+
 #ifndef MOUSEJIGGLER_MULTIPLIER
-#    define MOUSEJIGGLER_MULTIPLIER 10 // Total default timeout of 5 minutes.
+#  define MOUSEJIGGLER_MULTIPLIER 10  // Total default timeout of 5 minutes.
 #endif
 
 /** @brief Matrix scan task for MouseJiggler feature */

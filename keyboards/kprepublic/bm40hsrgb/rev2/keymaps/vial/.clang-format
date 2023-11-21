@@ -1,0 +1,6 @@
+---
+BasedOnStyle: Google
+ColumnLimit: 160
+IndentPPDirectives: AfterHash
+
+...

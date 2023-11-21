@@ -11,6 +11,10 @@ VIAL_ENABLE = yes
 TAP_DANCE_ENABLE = yes
 KEY_OVERRIDE_ENABLE = yes
 
+
+RGB_MATRIX_CUSTOM_USER = yes
+RGB_MATRIX_ENABLE = yes
+
 AUTO_SHIFT_ENABLE = no
 COMBO_ENABLE = no
 DEBUG_ENABLE = no
@@ -27,7 +31,3 @@ SECURE_ENABLE = no
 SPACE_CADET_ENABLE = no
 
 SRC += uf_process_record.c uf_process_rgb_keycodes.c uf_mousejiggler.c uf_numlock.c
-
-RGB_MATRIX_CUSTOM_USER = yes
-RGB_MATRIX_ENABLE = yes
-

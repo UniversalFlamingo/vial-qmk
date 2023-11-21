@@ -6,6 +6,8 @@
 
 #include <stdbool.h>
 
+#include "config.h"
+
 /** @brief Matrix scan task for numlock feature */
 void uf_numlock_task(void);
 
