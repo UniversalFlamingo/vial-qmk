@@ -4,11 +4,12 @@
 
 // Custom behaviors.
 #define ENABLE_RGB_MATRIX_NUMLOCK
+// #define RGB_MATRIX_CUSTOM_EFFECT_IMPLS
 #define MOUSEJIGGLER_ENABLE
 
 // Enable & configure Vial.
 #ifndef VIAL_ENABLE
-#define VIAL_ENABLE
+#  define VIAL_ENABLE
 #endif
 #define VIAL_KEYBOARD_UID \
   { 0x55, 0x53, 0xE7, 0xBC, 0x9D, 0x8E, 0x02, 0x7B }
@@ -18,11 +19,16 @@
 
 #define LAYER_STATE_8BIT
 
+// Locking
+
 /* top-left and bottom-right */
 #define VIAL_UNLOCK_COMBO_ROWS \
   { 0, 3 }
 #define VIAL_UNLOCK_COMBO_COLS \
   { 0, 11 }
+
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
 
 // Lighting effects
 
@@ -30,8 +36,6 @@
 #define RGB_MATRIX_KEYPRESSES
 
 #undef BACKLIGHT_BREATHING
-#undef LOCKING_SUPPORT_ENABLE
-#undef LOCKING_RESYNC_ENABLE
 #undef RGBLIGHT_LAYERS
 #define RGBLIGHT_MAX_LAYERS 0
 
@@ -46,11 +50,11 @@
 // Remove some things to reduce the binary size.
 
 #ifndef NO_DEBUG
-#define NO_DEBUG
+#  define NO_DEBUG
 #endif
 #ifndef NO_MUSIC_MODE
-#define NO_MUSIC_MODE
+#  define NO_MUSIC_MODE
 #endif
 #ifndef NO_PRINT
-#define NO_PRINT
+#  define NO_PRINT
 #endif

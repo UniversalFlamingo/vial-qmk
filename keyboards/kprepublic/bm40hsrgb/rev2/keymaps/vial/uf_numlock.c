@@ -18,7 +18,7 @@
 /** @brief True when numlock is active. */
 static bool uf_numlock_active = false;
 
-static uint8_t uf_numlock_animation = RGB_MATRIX_CUSTOM_NUMLOCK;
+static uint8_t uf_numlock_animation = RGB_MATRIX_CUSTOM_numlock;
 static uint8_t uf_previous_animation = 0;
 
 void uf_numlock_task(void) {}
