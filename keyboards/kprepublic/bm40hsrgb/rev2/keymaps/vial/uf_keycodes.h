@@ -1,10 +1,26 @@
 #include QMK_KEYBOARD_H
 
-enum custom_keycodes {
+#include "config.h"
+
+#ifdef VIAL_ENABLE
   // See vial-gui/src/main/python/keycodes/keycodes_v6.py
   // Map custom keycodes to vial's USER00 ...
+#  define   KB_SAFE_RANGE   QK_KB_0
+#else
+#  define   KB_SAFE_RANGE   SAFE_RANGE
+#endif
 
-  B_MJM_TG = QK_KB_0,  // toggle mouse-jiggle mode
+enum custom_keycodes {
+#ifdef VIAL_ENABLE
+  // See vial-gui/src/main/python/keycodes/keycodes_v6.py
+  // Map custom keycodes to vial's USER00 ...
+  B_MJM_TG = KB_SAFE_RANGE,  // toggle mouse-jiggle mode
+#else
+  B_MJM_TG = SAFE_RANGE,  // toggle mouse-jiggle mode
+#endif
+  // numlock TO(1) & toggle rgb
+  B_LLOWR,
+  B_LUPPR,
 
 //   B_RGBL_TG,           // rgblight_toggle_noeeprom   -- LEDs below the PCB (i.e. - underlight)
 //   B_RGBM_TG,           // rgb_matrix_toggle_noeeprom -- per-key LEDs

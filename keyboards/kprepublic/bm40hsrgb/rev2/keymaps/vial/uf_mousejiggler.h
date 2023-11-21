@@ -14,21 +14,21 @@
 #endif
 
 /** @brief Matrix scan task for MouseJiggler feature */
-void mousejiggler_task(void);
+void uf_mousejiggler_task(void);
 
 #if MOUSEJIGGLER_TIMEOUT > 0
 /** @brief Resets timer for MouseJiggler idle timeout. */
-void mousejiggler_reset_idle_timer(void);
+void uf_mousejiggler_reset_idle_timer(void);
 #endif
 
 /** @brief Activates MouseJiggler. */
-void mousejiggler_on(void);
+void uf_mousejiggler_on(void);
 
 /** @brief Deactivates MouseJiggler. */
-void mousejiggler_off(void);
+void uf_mousejiggler_off(void);
 
 /** @brief Toggles MouseJiggler. */
-void mousejiggler_toggle(void);
+void uf_mousejiggler_toggle(void);
 
 /** @brief Gets whether currently active. */
-bool is_mousejiggler_on(void);
+bool uf_is_mousejiggler_on(void);

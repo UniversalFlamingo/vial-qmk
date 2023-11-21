@@ -26,4 +26,8 @@ SECURE_ENABLE = no
 # e.g. -- RSFT_T(KC_ENTER)
 SPACE_CADET_ENABLE = no
 
-SRC += process_record.c process_rgb_keycodes.c mousejiggler.c
+SRC += uf_process_record.c uf_process_rgb_keycodes.c uf_mousejiggler.c uf_numlock.c
+
+RGB_MATRIX_CUSTOM_USER = yes
+RGB_MATRIX_ENABLE = yes
+

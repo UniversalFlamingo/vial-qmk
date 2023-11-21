@@ -9,12 +9,10 @@
 #include "action.h"
 #include "action_util.h"
 
-#include "config.h"
-#include "custom_keycodes.h"
-#include "mousejiggler.h"
+#include "uf_mousejiggler.h"
 
 /** @brief True when MouseJiggler is active. */
-static bool mousejiggler_active = false;
+static bool uf_mousejiggler_active = false;
 
 #if MOUSEJIGGLER_TIMEOUT > 0
 #    if MOUSEJIGGLER_TIMEOUT < 100 || MOUSEJIGGLER_TIMEOUT > 30000
@@ -25,10 +23,10 @@ static bool mousejiggler_active = false;
 #    endif
 
 /** @brief Deadline for idle timeout. */
-static uint16_t idle_timer = 0;
-static uint8_t multiplier = 0;
+static uint16_t uf_idle_timer = 0;
+static uint8_t uf_multiplier = 0;
 
-static void mousejiggler_send_keepalive(void) {
+static void uf_mousejiggler_send_keepalive(void) {
 
     // Turn on underglow LEDs.
     rgblight_enable_noeeprom();
@@ -41,10 +39,10 @@ static void mousejiggler_send_keepalive(void) {
 
 }
 
-void mousejiggler_task(void) {
-    if(mousejiggler_active && timer_expired(timer_read(), idle_timer)) {
-      if(!multiplier) { mousejiggler_send_keepalive(); }
-      mousejiggler_reset_idle_timer();
+void uf_mousejiggler_task(void) {
+    if(uf_mousejiggler_active && timer_expired(timer_read(), uf_idle_timer)) {
+      if(!uf_multiplier) { uf_mousejiggler_send_keepalive(); }
+      uf_mousejiggler_reset_idle_timer();
     }
 }
 
@@ -52,41 +50,41 @@ void mousejiggler_task(void) {
 void mousejiggler_task(void) {}
 #endif // MOUSEJIGGLER_TIMEOUT > 0
 
-void mousejiggler_reset_idle_timer(void) {
-    if(multiplier) {
-      multiplier -= 1;
+void uf_mousejiggler_reset_idle_timer(void) {
+    if(uf_multiplier) {
+      uf_multiplier -= 1;
     } else {
-      multiplier = MOUSEJIGGLER_MULTIPLIER - 1;
+      uf_multiplier = MOUSEJIGGLER_MULTIPLIER - 1;
     }
-    idle_timer = (timer_read() + MOUSEJIGGLER_TIMEOUT) | 1;
+    uf_idle_timer = (timer_read() + MOUSEJIGGLER_TIMEOUT) | 1;
 }
 
-void mousejiggler_on(void) {
+void uf_mousejiggler_on(void) {
 #if MOUSEJIGGLER_TIMEOUT > 0
     rgblight_enable_noeeprom();
-    if(!mousejiggler_active) {
-        multiplier = MOUSEJIGGLER_MULTIPLIER - 1;
-        mousejiggler_reset_idle_timer();
+    if(!uf_mousejiggler_active) {
+        uf_multiplier = MOUSEJIGGLER_MULTIPLIER - 1;
+        uf_mousejiggler_reset_idle_timer();
     }
 #endif // MOUSEJIGGLER_TIMEOUT > 0
-    mousejiggler_active = true;
+    uf_mousejiggler_active = true;
 }
 
-void mousejiggler_off(void) {
+void uf_mousejiggler_off(void) {
 #if MOUSEJIGGLER_TIMEOUT > 0
     rgblight_disable_noeeprom();
 #endif // MOUSEJIGGLER_TIMEOUT > 0
-    mousejiggler_active = false;
+    uf_mousejiggler_active = false;
 }
 
-void mousejiggler_toggle(void) {
-    if(mousejiggler_active) {
-        mousejiggler_off();
+void uf_mousejiggler_toggle(void) {
+    if(uf_mousejiggler_active) {
+        uf_mousejiggler_off();
     } else {
-        mousejiggler_on();
+        uf_mousejiggler_on();
     }
 }
 
-bool is_mousejiggler_on(void) {
-    return mousejiggler_active;
+bool uf_is_mousejiggler_on(void) {
+    return uf_mousejiggler_active;
 }
