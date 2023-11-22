@@ -1,3 +1,6 @@
+
+#include "keycodes.h"
+#include "vial_ensure_keycode.h"
 #include QMK_KEYBOARD_H
 
 // clang-format off
@@ -10,9 +13,14 @@
 
 // clang-format on
 
+#include <stdbool.h>
 #include <stdint.h>
 
 #include "action.h"
+#include "action_util.h"
+#include "keymap_us.h"
+#include "quantum.h"
+#include "quantum_keycodes.h"
 
 void matrix_scan_user(void) {
 #ifdef MOUSEJIGGLER_ENABLE
@@ -21,6 +29,7 @@ void matrix_scan_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  uint8_t shifted = get_mods() & MOD_MASK_SHIFT;
   switch (keycode) {
     case B_MJM_TG:
       if (record->event.pressed) {
@@ -34,9 +43,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
 
+    case UF_BRC:
+      if (record->event.pressed) {
+        tap_code(shifted ? KC_RBRC : KC_LBRC);
+      }
+      return false;
+
+    case UF_CBR:
+      if (record->event.pressed) {
+        tap_code16(shifted ? KC_RCBR : KC_LCBR);
+      }
+      return false;
+
+    case UF_PRN:
+      if (record->event.pressed) {
+        tap_code16(shifted ? KC_RPRN : KC_LPRN);
+      }
+      return false;
+
+    case UF_DBS:
+      if (record->event.pressed) {
+        tap_code(shifted ? KC_BACKSPACE : KC_DELETE);
+      }
+
+      return false;
+
     case QK_TRI_LAYER_LOWER:
-      if (!record->event.pressed) {
-        uf_numlock_off();
+      if (!record->event.pressed && uf_is_numlock_on()) {
+        return false;
       }
   }
 

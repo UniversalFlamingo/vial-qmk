@@ -19,6 +19,16 @@ enum custom_keycodes {
 
   B_NLTOG,  // Toggle numlock (on lower layer)
 
+  UF_PRN,  // KC_LPRN and KC_RPRN
+  UF_BRC,  // KC_LBRC and KC_RBRC
+  UF_CBR,  // KC_LCBR and KC_RCBR
+
+  UF_EQL,   // KC_EQL,  | on double-tap
+  UF_MINS,  // KC_MINS, " on double-tap
+  UF_GRV,   // KC_GRV,  ' on double-tap
+
+  UF_DBS,   // KC_BSPC and KC_DEL
+
   //   B_RGBL_TG,           // rgblight_toggle_noeeprom   -- LEDs below the PCB (i.e. - underlight)
   //   B_RGBM_TG,           // rgb_matrix_toggle_noeeprom -- per-key LEDs
 
@@ -36,5 +46,5 @@ enum custom_keycodes {
   B_RGBL_SPD,
   B_RGBL_M_P,  // MODE_PLAIN
   B_RGBL_M_B,  // MODE_BREATHE
-               // B_RGBL_M_T,  // MODE_RGBTEST
+  // B_RGBL_M_T,  // MODE_RGBTEST
 };

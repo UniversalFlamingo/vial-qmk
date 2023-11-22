@@ -30,4 +30,4 @@ SECURE_ENABLE = no
 # e.g. -- RSFT_T(KC_ENTER)
 SPACE_CADET_ENABLE = no
 
-SRC += uf_process_record.c uf_process_rgb_keycodes.c uf_mousejiggler.c uf_numlock.c
+SRC += uf_process_record.c uf_process_rgb_keycodes.c uf_mousejiggler.c uf_numlock.c uf_tapdances.c
