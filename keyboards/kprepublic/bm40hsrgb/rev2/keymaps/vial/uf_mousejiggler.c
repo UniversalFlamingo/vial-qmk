@@ -2,16 +2,14 @@
  * This is modeled after quantum/caps_word.{c,h}
  */
 
-#include QMK_KEYBOARD_H
+#include <stdint.h>
+#include <util/delay.h>
 
 // clang-format off
 
 #include "uf_mousejiggler.h"
 
 // clang-format on
-
-#include <stdint.h>
-#include <util/delay.h>
 
 #include "action.h"
 #include "action_util.h"
@@ -54,7 +52,7 @@ void uf_mousejiggler_task(void) {
 }
 
 #else
-void mousejiggler_task(void) {}
+void uf_mousejiggler_task(void) {}
 #endif  // MOUSEJIGGLER_TIMEOUT > 0
 
 void uf_mousejiggler_reset_idle_timer(void) {

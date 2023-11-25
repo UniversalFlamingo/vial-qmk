@@ -1,6 +1,13 @@
-#include QMK_KEYBOARD_H
+
+#pragma once
+
+// clang-format off
 
 #include "config.h"
+#include "uf_tapdances.h"
+
+// clang-format on
+
 #include "keycodes.h"
 
 #ifdef VIAL_ENABLE
@@ -12,25 +19,21 @@
 #endif
 
 enum custom_keycodes {
-  B_MJM_TG = KB_SAFE_RANGE,  // toggle mouse-jiggle mode
+  UF_MJM_TG = KB_SAFE_RANGE,  // toggle mouse-jiggle mode
 
-  B_LLOWR,  // Lock Lower Layer
-  B_LUPPR,  // Lock Upper Layer
+  UF_LLOWR,  // Lock Lower Layer
+  UF_LUPPR,  // Lock Upper Layer
 
-  B_NLTOG,  // Toggle numlock (on lower layer)
+  UF_NLTOG,  // Toggle numlock (on lower layer)
 
   UF_PRN,  // KC_LPRN and KC_RPRN
   UF_BRC,  // KC_LBRC and KC_RBRC
   UF_CBR,  // KC_LCBR and KC_RCBR
 
-  UF_EQL,   // KC_EQL,  | on double-tap
-  UF_MINS,  // KC_MINS, " on double-tap
-  UF_GRV,   // KC_GRV,  ' on double-tap
+  UF_DBS,  // KC_BSPC and KC_DEL
 
-  UF_DBS,   // KC_BSPC and KC_DEL
-
-  //   B_RGBL_TG,           // rgblight_toggle_noeeprom   -- LEDs below the PCB (i.e. - underlight)
-  //   B_RGBM_TG,           // rgb_matrix_toggle_noeeprom -- per-key LEDs
+  // B_RGBL_TG,           // rgblight_toggle_noeeprom   -- LEDs below the PCB (i.e. - underlight)
+  // B_RGBM_TG,           // rgb_matrix_toggle_noeeprom -- per-key LEDs
 
   // underlight equivalents of the matrix keycodes.
   B_RGBL_TOG,
@@ -48,3 +51,11 @@ enum custom_keycodes {
   B_RGBL_M_B,  // MODE_BREATHE
   // B_RGBL_M_T,  // MODE_RGBTEST
 };
+
+#define UF_EQUAL TD(UF_TD_EQUAL)
+#define UF_MINUS TD(UF_TD_MINUS)
+#define UF_GRAVE TD(UF_TD_GRAVE)
+
+#define UF_EQL UF_EQUAL
+#define UF_MINS UF_MINUS
+#define UF_GRV UF_GRAVE

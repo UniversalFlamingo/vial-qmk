@@ -7,28 +7,28 @@
 // #define RGB_MATRIX_CUSTOM_EFFECT_IMPLS
 #define MOUSEJIGGLER_ENABLE
 
-// Enable & configure Vial.
-#ifndef VIAL_ENABLE
-#  define VIAL_ENABLE
-#endif
-#define VIAL_KEYBOARD_UID \
-  { 0x55, 0x53, 0xE7, 0xBC, 0x9D, 0x8E, 0x02, 0x7B }
+#ifdef VIAL_ENABLE
 
-#define DYNAMIC_KEYMAP_LAYER_COUNT 4
-#define DYNAMIC_KEYMAP_MACRO_COUNT 4
+#  define VIAL_KEYBOARD_UID \
+    { 0x55, 0x53, 0xE7, 0xBC, 0x9D, 0x8E, 0x02, 0x7B }
 
-#define LAYER_STATE_8BIT
+#  define DYNAMIC_KEYMAP_LAYER_COUNT 4
+#  define DYNAMIC_KEYMAP_MACRO_COUNT 4
+
+#  define LAYER_STATE_8BIT
 
 // Locking
 
 /* top-left and bottom-right */
-#define VIAL_UNLOCK_COMBO_ROWS \
-  { 0, 3 }
-#define VIAL_UNLOCK_COMBO_COLS \
-  { 0, 11 }
+#  define VIAL_UNLOCK_COMBO_ROWS \
+    { 0, 3 }
+#  define VIAL_UNLOCK_COMBO_COLS \
+    { 0, 11 }
 
-#undef LOCKING_SUPPORT_ENABLE
-#undef LOCKING_RESYNC_ENABLE
+#  undef LOCKING_SUPPORT_ENABLE
+#  undef LOCKING_RESYNC_ENABLE
+
+#endif  // VIAL_ENABLE
 
 // Lighting effects
 

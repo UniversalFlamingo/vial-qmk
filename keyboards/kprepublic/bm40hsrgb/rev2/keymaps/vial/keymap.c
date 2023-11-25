@@ -13,14 +13,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "keycodes.h"
-#include "keymap_us.h"
 #include QMK_KEYBOARD_H
+
+// https://docs.qmk.fm/#/feature_layouts?id=tips-for-making-layouts-keyboard-agnostic
 
 #include <stdint.h>
 
+// clang-format off
+
 #include "uf_keycodes.h"
 #include "uf_keymap.h"
+
+// clang-format on
+
+#include "keycodes.h"
+#include "keymap_us.h"
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -43,14 +51,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 /* Lower
- * ,-----------------------------------------------------------------------------------.
- * `-----------------------------------------------------------------------------------'
+ * ,-----------------------------------------------------------------------------------------------.
+ * |       |   UP  |       |       | PG UP |       |       |       |  7 &  |  8 *  |  9 (  |   /   |
+ * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
+ * |  LEFT |       | RIGHT |  HOME |       | END   |       |       |  4 $  |  5 %  |  6 ^  |   *   |
+ * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
+ * |       |   DN  |       |       | PG DN |       |       |       |  1 !  |  2 @  |  3 #  |   -   |
+ * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
+ * |       |       |       |       |       |               | NPENT |       |   0  c|   .  o|   +  ^|
+ * `-----------------------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_ortho_4x12_1x2uC(
     _______, KC_UP  , _______, _______, _______, KC_PGUP, _______, _______,   KC_7,     KC_8,         KC_9,           KC_PSLS,
     KC_LEFT, _______, KC_RGHT, _______, KC_HOME, _______, KC_END , _______,   KC_4,     KC_5,         KC_6,           KC_PAST,
     _______, KC_DOWN, _______, _______, _______, KC_PGDN, _______, _______,   KC_1,     KC_2,         KC_3,           KC_PMNS,
-    _______, _______, _______, _______, _______, ________________,  KC_PENT, _______, RCMD_T(KC_0), ROPT_T(KC_DOT), RCTL_T(KC_PPLS)
+    _______, _______, _______, _______, _______, _______,          KC_PENT, _______, RCMD_T(KC_0), ROPT_T(KC_DOT), RCTL_T(KC_PPLS)
 ),
 
 /* Raise
@@ -68,26 +83,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_MINS, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS,
     KC_EQL , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_QUOT,
     KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 ,
-    _______, _______, _______, _______, _______, ________________, _______, _______, _______, _______, _______
+    _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
 ),
 
 /* Adjust (Lower + Raise)
  *                      v------------------------RGB CONTROL--------------------v
  * ,-----------------------------------------------------------------------------------.
- * |      | RGB  |RGBMOD| HUE+ | SAT+ |BRGTH+|      | UND  |UNDMOD| HUE+ | SAT+ |BRGTH+|
+ * | CAPS | RGB  |RGBMOD| HUE+ | SAT+ |BRGTH+|      | UND  |UNDMOD| HUE+ | SAT+ |BRGTH+|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |RGBMOD| HUE- | SAT- |BRGTH-|      |      |UNDMOD| HUE- | SAT- |BRGTH-|
+ * | NUMB |      |RGBMOD| HUE- | SAT- |BRGTH-|      |      |UNDMOD| HUE- | SAT- |BRGTH-|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |  MJ  |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | CAPS | NUMB |  MJ  | INS  |      |             |      |      |      |      | RESET|
+ * | INS  |      |      |      |      |             |      |      |      |      | RESET|
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT_ortho_4x12_1x2uC(
-    _______,  RGB_TOG, RGB_MOD,  RGB_HUI, RGB_SAI, RGB_VAI, _______, B_RGBL_TOG, B_RGBL_MOD,  B_RGBL_HUI, B_RGBL_SAI, B_RGBL_VAI,
-    _______,  _______, RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD, _______, _______,    B_RGBL_RMOD, B_RGBL_HUD, B_RGBL_SAD, B_RGBL_VAD,
-    _______,  _______, _______,  RGB_M_P, RGB_M_B, RGB_M_T, _______, _______,    _______,     B_RGBL_M_P, B_RGBL_M_B, _______,
-    KC_CAPS,  B_NLTOG, B_MJM_TG, KC_INS , _______, _______,          _______,    _______,     _______,    _______,    QK_BOOT
+    KC_CAPS,   RGB_TOG, RGB_MOD,  RGB_HUI, RGB_SAI, RGB_VAI, _______, B_RGBL_TOG,  B_RGBL_MOD,   B_RGBL_HUI,  B_RGBL_SAI,  B_RGBL_VAI,
+    UF_NLTOG,  _______, RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD, _______, _______,     B_RGBL_RMOD,  B_RGBL_HUD,  B_RGBL_SAD,  B_RGBL_VAD,
+    UF_MJM_TG, _______, _______,  RGB_M_P, RGB_M_B, RGB_M_T, _______, _______,     _______,      B_RGBL_M_P,  B_RGBL_M_B,  _______,
+    KC_INS,    _______, _______,  _______, _______, _______,          _______,     _______,      _______,    _______,      QK_BOOT
 )
 
 };

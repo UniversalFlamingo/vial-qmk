@@ -18,14 +18,14 @@
 
 #include QMK_KEYBOARD_H
 
+#include <stdint.h>
+
 // clang-format off
 
 #include "config.h"
 #include "uf_keycodes.h"
 
 // clang-format on
-
-#include <stdint.h>
 
 #include "action.h"
 #include "action_util.h"

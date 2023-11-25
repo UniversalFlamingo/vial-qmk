@@ -8,9 +8,6 @@
 
 #include "config.h"
 
-/** @brief Matrix scan task for numlock feature */
-void uf_numlock_task(void);
-
 /** @brief Activates numlock. */
 void uf_numlock_on(void);
 

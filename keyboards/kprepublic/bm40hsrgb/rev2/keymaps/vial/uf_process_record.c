@@ -1,7 +1,8 @@
 
-#include "keycodes.h"
-#include "vial_ensure_keycode.h"
 #include QMK_KEYBOARD_H
+
+#include <stdbool.h>
+#include <stdint.h>
 
 // clang-format off
 
@@ -13,14 +14,13 @@
 
 // clang-format on
 
-#include <stdbool.h>
-#include <stdint.h>
-
 #include "action.h"
 #include "action_util.h"
+#include "keycodes.h"
 #include "keymap_us.h"
 #include "quantum.h"
 #include "quantum_keycodes.h"
+#include "vial_ensure_keycode.h"
 
 void matrix_scan_user(void) {
 #ifdef MOUSEJIGGLER_ENABLE
@@ -31,13 +31,13 @@ void matrix_scan_user(void) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   uint8_t shifted = get_mods() & MOD_MASK_SHIFT;
   switch (keycode) {
-    case B_MJM_TG:
+    case UF_MJM_TG:
       if (record->event.pressed) {
         uf_mousejiggler_toggle();
       }
       return false;
 
-    case B_NLTOG:
+    case UF_NLTOG:
       if (record->event.pressed) {
         uf_numlock_toggle();
       }
@@ -63,7 +63,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case UF_DBS:
       if (record->event.pressed) {
-        tap_code(shifted ? KC_BACKSPACE : KC_DELETE);
+        tap_code(shifted ? KC_DELETE : KC_BACKSPACE);
       }
 
       return false;
