@@ -9,9 +9,11 @@
 // clang-format on
 
 #include "action_layer.h"
+#include "keycodes.h"
 #include "rgb_matrix/rgb_matrix.h"
 #include "rgblight.h"
 #include "tri_layer.h"
+#include "vial_ensure_keycode.h"
 
 /** @brief True when numlock is active. */
 static bool uf_numlock_active = false;
@@ -48,6 +50,7 @@ void uf_numlock_toggle(void) {
   } else {
     uf_numlock_on();
   }
+  tap_code(KC_NUM_LOCK);
 }
 
 bool uf_is_numlock_on(void) { return uf_numlock_active; }

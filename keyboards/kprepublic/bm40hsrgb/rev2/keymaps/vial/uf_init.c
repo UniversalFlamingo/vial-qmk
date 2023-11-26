@@ -8,13 +8,8 @@
 #include "color.h"
 #include "rgb_matrix.h"
 #include "rgblight.h"
-#include "uf_tapdances.h"
 
 void keyboard_post_init_user(void) {
-#ifdef VIAL_ENABLE
-    uf_tap_dance_init();
-#endif
-
 #ifdef RGB_MATRIX_ENABLE
   rgb_matrix_enable_noeeprom();
   rgb_matrix_sethsv_noeeprom(HSV_PURPLE);

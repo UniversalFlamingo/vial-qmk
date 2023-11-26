@@ -29,7 +29,9 @@ void matrix_scan_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  uint8_t shifted = get_mods() & MOD_MASK_SHIFT;
+
+  if (!uf_process_rgb_keycodes(keycode, record)) { return false; }
+
   switch (keycode) {
     case UF_MJM_TG:
       if (record->event.pressed) {
@@ -43,36 +45,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
 
-    case UF_BRC:
-      if (record->event.pressed) {
-        tap_code(shifted ? KC_RBRC : KC_LBRC);
-      }
-      return false;
-
-    case UF_CBR:
-      if (record->event.pressed) {
-        tap_code16(shifted ? KC_RCBR : KC_LCBR);
-      }
-      return false;
-
-    case UF_PRN:
-      if (record->event.pressed) {
-        tap_code16(shifted ? KC_RPRN : KC_LPRN);
-      }
-      return false;
-
-    case UF_DBS:
-      if (record->event.pressed) {
-        tap_code(shifted ? KC_DELETE : KC_BACKSPACE);
-      }
-
-      return false;
-
     case QK_TRI_LAYER_LOWER:
       if (!record->event.pressed && uf_is_numlock_on()) {
         return false;
       }
   }
 
-  return uf_process_rgb_keycodes(keycode, record);
+  return true;
 }

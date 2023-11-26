@@ -26,12 +26,6 @@ enum custom_keycodes {
 
   UF_NLTOG,  // Toggle numlock (on lower layer)
 
-  UF_PRN,  // KC_LPRN and KC_RPRN
-  UF_BRC,  // KC_LBRC and KC_RBRC
-  UF_CBR,  // KC_LCBR and KC_RCBR
-
-  UF_DBS,  // KC_BSPC and KC_DEL
-
   // B_RGBL_TG,           // rgblight_toggle_noeeprom   -- LEDs below the PCB (i.e. - underlight)
   // B_RGBM_TG,           // rgb_matrix_toggle_noeeprom -- per-key LEDs
 
@@ -52,10 +46,7 @@ enum custom_keycodes {
   // B_RGBL_M_T,  // MODE_RGBTEST
 };
 
-#define UF_EQUAL TD(UF_TD_EQUAL)
-#define UF_MINUS TD(UF_TD_MINUS)
-#define UF_GRAVE TD(UF_TD_GRAVE)
-
-#define UF_EQL UF_EQUAL
-#define UF_MINS UF_MINUS
-#define UF_GRV UF_GRAVE
+// vscode  shortcuts
+#define UF_FMT S(A(KC_F))     // Shift-Alt-F -- Format code
+#define UF_NET S(G(KC_RBRC))  // Shift-Gui-] (Shift-Cmd-]) -- Next editor/browser/iTerm tab
+#define UF_PET S(G(KC_LBRC))  // Shift-Gui-] ^--- previous

@@ -35,4 +35,4 @@ SRC += uf_mousejiggler.c
 SRC += uf_numlock.c
 SRC += uf_process_record.c
 SRC += uf_process_rgb_keycodes.c
-SRC += uf_tapdances.c
+# SRC += uf_tapdances.c
