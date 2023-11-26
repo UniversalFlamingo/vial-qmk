@@ -26,8 +26,8 @@ void uf_numlock_on(void) {
     return;
   }
   uf_previous_animation = rgb_matrix_get_mode();
-//   rgb_matrix_disable_noeeprom();
-//   rgblight_disable_noeeprom();
+  //   rgb_matrix_disable_noeeprom();
+  //   rgblight_disable_noeeprom();
   rgb_matrix_mode_noeeprom(uf_numlock_animation);
   layer_on(get_tri_layer_lower_layer());
   uf_numlock_active = true;
@@ -37,8 +37,8 @@ void uf_numlock_off(void) {
   if (!uf_numlock_active) {
     return;
   }
-//   rgb_matrix_enable_noeeprom();
-//   rgblight_enable_noeeprom();
+  //   rgb_matrix_enable_noeeprom();
+  //   rgblight_enable_noeeprom();
   layer_off(get_tri_layer_lower_layer());
   rgb_matrix_mode_noeeprom(uf_previous_animation);
   uf_numlock_active = false;
