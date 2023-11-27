@@ -50,3 +50,5 @@ enum custom_keycodes {
 #define UF_FMT S(A(KC_F))     // Shift-Alt-F -- Format code
 #define UF_NET S(G(KC_RBRC))  // Shift-Gui-] (Shift-Cmd-]) -- Next editor/browser/iTerm tab
 #define UF_PET S(G(KC_LBRC))  // Shift-Gui-] ^--- previous
+#define UF_NAPP G(KC_TAB)     // Gui-Tab (Cmd-Tab) -- Next App
+#define UF_NWIN G(KC_GRV)     // Gui-` (Cmd-`) -- Next Window of App

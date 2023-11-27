@@ -35,8 +35,7 @@
 #include "quantum_keycodes.h"
 
 // clang-format off
-#ifndef VIAL_ENABLE
-
+// TODO: Move overrides to their own file.
 const key_override_t lprn_key_override =
     ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_LPRN, KC_RPRN, 0x01, 0);  // Shift ( is )
 const key_override_t lbrc_key_override =
@@ -46,15 +45,17 @@ const key_override_t lcbr_key_override =
 const key_override_t bspc_key_override =
     ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_BSPC, KC_DEL, 0xFF, MOD_MASK_SHIFT);   // Shift ( is )
 
+#if defined(VIAL_ENABLE) && defined(VIAL_KEY_OVERRIDE_ENABLE)
+const key_override_t** uf_key_overrides = (const key_override_t*[]){
+#else
 const key_override_t** key_overrides = (const key_override_t*[]){
+#endif
     &lprn_key_override,
     &lbrc_key_override,
     &lcbr_key_override,
     &bspc_key_override,
     NULL
 };
-
-#endif // VIAL_ENABLE
 // clang-format on
 
 // clang-format off
@@ -83,24 +84,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------------------.
  * |   UP  |   UP  |       | PG UP | PG UP |       |  FMT  |       |  7 &  |  8 *  |  9 (  |   /   |
  * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
- * |  LEFT | RIGHT |       |  HOME |  END  |       |NextTab|       |  4 $  |  5 %  |  6 ^  |   *   |
+ * |  LEFT | RIGHT |       |  HOME |  END  |PrevTab|NextTab|       |  4 $  |  5 %  |  6 ^  |   *   |
  * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
- * |   DN s|   DN  |       | PG DN | PG DN |       |PrevTab|       |  1 !  |  2 @  |  3 #  |   -  s|
+ * |   DN s|   DN  |       | PG DN | PG DN |NextApp|NextWin|       |  1 !  |  2 @  |  3 #  |   -  s|
  * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
  * |       |       |       |       |       |               | NPENT |       |   0  c|   .  o|   +  ^|
  * `-----------------------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_ortho_4x12_1x2uC(
     KC_UP  ,         KC_UP  , KC_NO  , KC_PGUP, KC_PGUP, KC_NO  , UF_FMT , KC_NO  ,   KC_7,     KC_8,         KC_9,           KC_PSLS,
-    KC_LEFT,         KC_RGHT, KC_NO  , KC_HOME, KC_END , KC_NO  , UF_NET , KC_NO  ,   KC_4,     KC_5,         KC_6,           KC_PAST,
-    LSFT_T(KC_DOWN), KC_DOWN, KC_NO  , KC_PGDN, KC_PGDN, KC_NO  , UF_PET , KC_NO  ,   KC_1,     KC_2,         KC_3,        RSFT_T(KC_PMNS),
+    KC_LEFT,         KC_RGHT, KC_NO  , KC_HOME, KC_END , UF_PET , UF_NET , KC_NO  ,   KC_4,     KC_5,         KC_6,           KC_PAST,
+    LSFT_T(KC_DOWN), KC_DOWN, KC_NO  , KC_PGDN, KC_PGDN, UF_NAPP, UF_NWIN, KC_NO  ,   KC_1,     KC_2,         KC_3,        RSFT_T(KC_PMNS),
     _______,         _______, _______, _______, _______, _______,          KC_PENT, _______, RCMD_T(KC_0), ROPT_T(KC_DOT), RCTL_T(KC_PPLS)
 ),
 /* Raise
  * ,-----------------------------------------------------------------------------------------------.
- * |  - _  |   !   |   @   |   #   |   $   |   %   |   ^   |   &   |   *   |   (   |   )   |  \ |  |
+ * |  ESC  |   !   |   @   |   #   |   $   |   %   |   ^   |   &   |   *   |   (   |   )   |  \ |  |
  * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
- * |  = +  |  1 !  |  2 @  |  3 #  |  4 $  |  5 %  |  6 ^  |  7 &  |  8 *  |  9 (  |  0 )  |  ' "  |
+ * |  TAB  |  1 !  |  2 @  |  3 #  |  4 $  |  5 %  |  6 ^  |  7 &  |  8 *  |  9 (  |  0 )  |  ' "  |
  * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
  * |  F1   |  F2   |  F3   |  F4   |  F5   |  F6   |  F7   |  F8   |  F9   |  F10  |  F11  |  F12  |
  * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
@@ -108,8 +109,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_ortho_4x12_1x2uC(
-    KC_MINS, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS,
-    KC_EQL , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_QUOT,
+    KC_ESC , KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS,
+    KC_TAB , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_QUOT,
     KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 ,
     _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
 ),
