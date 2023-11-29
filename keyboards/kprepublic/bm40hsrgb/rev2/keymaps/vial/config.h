@@ -3,8 +3,7 @@
 #pragma once
 
 // Custom behaviors.
-#define ENABLE_RGB_MATRIX_NUMLOCK
-// #define RGB_MATRIX_CUSTOM_EFFECT_IMPLS
+// #define ENABLE_RGB_MATRIX_NUMLOCK
 #define MOUSEJIGGLER_ENABLE
 
 #ifdef VIAL_ENABLE
@@ -16,6 +15,8 @@
 #  define DYNAMIC_KEYMAP_MACRO_COUNT 4
 
 #  define LAYER_STATE_8BIT
+
+#  define VIAL_KEY_OVERRIDE_ENTRIES 10
 
 // Locking
 
@@ -58,3 +59,6 @@
 #ifndef NO_PRINT
 #  define NO_PRINT
 #endif
+
+#define UF_TAP_DANCE_ENABLE
+#define UF_KEY_OVERRIDE_ENABLE

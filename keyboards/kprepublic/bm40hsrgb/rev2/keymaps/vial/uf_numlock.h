@@ -6,8 +6,6 @@
 
 #include <stdbool.h>
 
-#include "config.h"
-
 /** @brief Activates numlock. */
 void uf_numlock_on(void);
 

@@ -46,9 +46,42 @@ enum custom_keycodes {
   // B_RGBL_M_T,  // MODE_RGBTEST
 };
 
-// vscode  shortcuts
-#define UF_FMT S(A(KC_F))     // Shift-Alt-F -- Format code
-#define UF_NET S(G(KC_RBRC))  // Shift-Gui-] (Shift-Cmd-]) -- Next editor/browser/iTerm tab
-#define UF_PET S(G(KC_LBRC))  // Shift-Gui-] ^--- previous
-#define UF_NAPP G(KC_TAB)     // Gui-Tab (Cmd-Tab) -- Next App
-#define UF_NWIN G(KC_GRV)     // Gui-` (Cmd-`) -- Next Window of App
+// clang-format off
+
+// _QWERTY
+
+#define UF_Z        LSFT_T(KC_Z)
+#define UF_SLSH     RSFT_T(KC_SLSH)
+
+#define UF_HOME     LCTL_T(KC_HOME)
+#define UF_PGDN     LOPT_T(KC_PGDN)
+#define UF_PGUP     KC_PGUP
+#define UF_END      LCMD_T(KC_END)
+
+#define UF_LEFT     RCMD_T(KC_LEFT)
+#define UF_DOWN     KC_DOWN
+#define UF_UP       ROPT_T(KC_UP)
+#define UF_RIGHT    RCTL_T(KC_RIGHT)
+
+// _LOWER
+
+#define UF_PMNS     RSFT_T(KC_PMNS)
+
+#define UF_PENT     RCMD_T(KC_PENT)
+#define UF_P0       KC_P0
+#define UF_PDOT     ROPT_T(KC_PDOT)
+#define UF_PPLS     RCTL_T(KC_PPLS)
+
+// _RAISE
+
+#define UF_F1       LSFT_T(KC_F1)
+#define UF_F12      RSFT_T(KC_F12)
+
+// vscode & macos shortcuts
+#define UF_FMT     S(A(KC_F))     // Shift-Alt-F -- Format code
+#define UF_PET     S(G(KC_LBRC))  // Shift-Cmd-[ -- Previous editor/browser/iTerm tab
+#define UF_NET     S(G(KC_RBRC))  // Shift-Cmd-] -- Next editor/browser/iTerm tab
+#define UF_NAPP     G(KC_TAB)     // Cmd-Tab     -- Next App
+#define UF_NWIN     G(KC_GRV)     // Cmd-`       -- Next Window of App
+
+// clang-format on

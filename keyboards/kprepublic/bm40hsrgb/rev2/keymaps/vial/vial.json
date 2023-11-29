@@ -7,78 +7,7 @@
         "rows": 4,
         "cols": 12
     },
-    "customKeycodes": [
-        {
-            "name": "mousejiggler",
-            "shortName": "B_MJM_TG",
-            "title": "mousejiggler toggle"
-        },
-        {
-            "name": "Underglow",
-            "shortName": "B_RGBL_TOG",
-            "title": "Underglow TOG"
-        },
-        {
-            "name": "UnderglowNext",
-            "shortName": "B_RGBL_MOD",
-            "title": "UnderglowNext"
-        },
-        {
-            "name": "UnderglowPrev",
-            "shortName": "B_RGBL_RMOD",
-            "title": "UnderglowPrev"
-        },
-        {
-            "name": "UnderglowHUI",
-            "shortName": "B_RGBL_HUI",
-            "title": "UnderglowHUI"
-        },
-        {
-            "name": "UnderglowHUD",
-            "shortName": "B_RGBL_HUD",
-            "title": "UnderglowHUD"
-        },
-        {
-            "name": "UnderglowSAI",
-            "shortName": "B_RGBL_SAI",
-            "title": "UnderglowSAI"
-        },
-        {
-            "name": "UnderglowSAD",
-            "shortName": "B_RGBL_SAD",
-            "title": "UnderglowSAD"
-        },
-        {
-            "name": "UnderglowVAI",
-            "shortName": "B_RGBL_VAI",
-            "title": "UnderglowVAI"
-        },
-        {
-            "name": "UnderglowVAD",
-            "shortName": "B_RGBL_VAD",
-            "title": "UnderglowVAD"
-        },
-        {
-            "name": "UnderglowSPI",
-            "shortName": "B_RGBL_SPI",
-            "title": "UnderglowSPI"
-        },
-        {
-            "name": "UnderglowSPD",
-            "shortName": "B_RGBL_SPD",
-            "title": "UnderglowSPD"
-        },
-        {
-            "name": "UnderglowPLAIN",
-            "shortName": "B_RGBL_M_P",
-            "title": "UnderglowPLAIN"
-        },
-        {
-            "name": "UnderglowBREATHE",
-            "shortName": "B_RGBL_M_B",
-            "title": "UnderglowBREATHE"
-        }
-    ],
+    "customKeycodes": [],
     "layouts": {
         "keymap": [
             [

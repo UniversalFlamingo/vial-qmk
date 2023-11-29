@@ -96,7 +96,7 @@
                 "KC_PGDOWN",
                 "KC_PGDOWN",
                 "LGUI(KC_TAB)",
-                "LGUI(KC_GRV)",
+                "LGUI(KC_GRAVE)",
                 "KC_NO",
                 "KC_1",
                 "KC_2",
@@ -148,7 +148,7 @@
                 "KC_QUOTE"
             ],
             [
-                "KC_F1",
+                "LSFT_T(KC_F1)",
                 "KC_F2",
                 "KC_F3",
                 "KC_F4",
@@ -159,13 +159,13 @@
                 "KC_F9",
                 "KC_F10",
                 "KC_F11",
-                "KC_F12"
+                "RSFT_T(KC_F12)"
             ],
             [
-                "KC_TRNS",
-                "KC_TRNS",
-                "KC_TRNS",
-                "KC_TRNS",
+                "LCTL_T(KC_LEFT)",
+                "LALT_T(KC_DOWN)",
+                "LGUI_T(KC_UP)",
+                "KC_RIGHT",
                 "KC_TRNS",
                 "KC_TRNS",
                 -1,

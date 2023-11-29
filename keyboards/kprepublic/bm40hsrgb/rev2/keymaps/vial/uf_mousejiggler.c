@@ -2,11 +2,14 @@
  * This is modeled after quantum/caps_word.{c,h}
  */
 
+#include QMK_KEYBOARD_H
+
 #include <stdint.h>
 #include <util/delay.h>
 
 // clang-format off
 
+#include "config.h"
 #include "uf_mousejiggler.h"
 
 // clang-format on

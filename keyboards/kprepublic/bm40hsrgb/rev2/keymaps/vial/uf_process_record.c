@@ -29,8 +29,9 @@ void matrix_scan_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-
-  if (!uf_process_rgb_keycodes(keycode, record)) { return false; }
+  if (!uf_process_rgb_keycodes(keycode, record)) {
+    return false;
+  }
 
   switch (keycode) {
     case UF_MJM_TG:
@@ -46,8 +47,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
 
     case QK_TRI_LAYER_LOWER:
-      if (!record->event.pressed && uf_is_numlock_on()) {
-        return false;
+      if (record->event.pressed) {
+        uf_numlock_on();
+      }
+      else if (!uf_is_numlock_on()) {
+        uf_numlock_off();
       }
   }
 
