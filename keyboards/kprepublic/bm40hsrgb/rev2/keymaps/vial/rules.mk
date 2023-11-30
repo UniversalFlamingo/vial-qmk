@@ -1,3 +1,6 @@
+
+CONSOLE_ENABLE = no
+
 LTO_ENABLE = yes
 
 # Below-PCB solid color lights.

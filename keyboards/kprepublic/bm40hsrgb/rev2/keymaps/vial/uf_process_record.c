@@ -29,17 +29,11 @@ void matrix_scan_user(void) {
 #endif
 }
 
-void uf_handle_tri_layer_lower(keyrecord_t *record) {
-  if (record->event.pressed) {
-    uf_numlock_on();
-  } else /* if (!uf_is_numlock_on()) */ {
-    uf_numlock_off();
-  }
-}
-
 void uf_magic_backspace(uint16_t trigger_keycode, uint16_t on_tap_keycode, keyrecord_t *record) {
-  uint8_t mods = get_mods() | get_weak_mods();
-  uint8_t shifted = mods & MOD_MASK_SHIFT;
+  uint8_t mods = get_mods();
+  uint8_t weak_mods = get_weak_mods();
+  uint8_t effective_mods = mods | weak_mods;
+  uint8_t shifted = effective_mods & MOD_MASK_SHIFT;
 
   if (record->event.pressed) {
     return;
@@ -56,6 +50,8 @@ void uf_magic_backspace(uint16_t trigger_keycode, uint16_t on_tap_keycode, keyre
     // one shift key + tap sends delete without shift enabled (i.e. -- regular delete)
     del_mods(MOD_MASK_SHIFT);
     tap_code(KC_DELETE);
+    set_mods(mods);
+    set_weak_mods(weak_mods);
   } else {
     // tap sends keycode
     tap_code(on_tap_keycode);
@@ -68,24 +64,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 
   switch (keycode) {
-    case UF_MJM_TG:
-      if (record->event.pressed) {
-        uf_mousejiggler_toggle();
-      }
-      return false;
-
     case UF_NLTOG:
+      // UF_NLTOG is on _LOWER so we can only get here if UF_LOWR is pressed
       if (record->event.pressed) {
         uf_numlock_toggle();
       }
-      return false;
-
-    case KC_BSPC:
-      uf_magic_backspace(keycode, keycode, record);
-      return false;
-
-    case KC_SPACE:
-      uf_magic_backspace(keycode, keycode, record);
       return false;
 
     case UF_LOWR:
@@ -93,10 +76,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->tap.count) {
         // On tap
         uf_magic_backspace(KC_NO, KC_BSPC, record);
-      } else {
-        // on hold
+      } else if (record->event.pressed) {
+        // on hold press
         process_tri_layer(QK_TRI_LAYER_LOWER, record);
-        uf_handle_tri_layer_lower(record);
+        if (uf_is_numlock_off()) {
+          tap_code(KC_NUM_LOCK);
+        }
+      } else if (uf_is_numlock_off()) {
+        // on hold release
+        process_tri_layer(QK_TRI_LAYER_LOWER, record);
+        tap_code(KC_NUM_LOCK);
+      } else {
       }
       return false;
 
@@ -111,8 +101,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
 
-    // case QK_TRI_LAYER_LOWER:
-    //   uf_handle_tri_layer_lower(record);
+    case UF_MJM_TG:
+      if (record->event.pressed) {
+        uf_mousejiggler_toggle();
+      }
+      return false;
+
+    case KC_BSPC:
+      uf_magic_backspace(keycode, keycode, record);
+      return false;
+
+    case KC_SPACE:
+      uf_magic_backspace(keycode, keycode, record);
+      return false;
   }
 
   return true;

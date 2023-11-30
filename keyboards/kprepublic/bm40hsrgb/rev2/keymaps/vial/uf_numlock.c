@@ -47,6 +47,18 @@ bool uf_check_os_numlock_state(void) {
 
 bool uf_is_numlock_on(void) { return uf_numlock_active; }
 
+void uf_numlock_toggle(void) {
+  uf_numlock_active = !uf_numlock_active;
+  /*
+    if (uf_numlock_active) {
+      uf_numlock_off();
+    } else {
+      uf_numlock_on();
+    }
+  */
+}
+
+/*
 void uf_numlock_on(void) {
   if (uf_numlock_active) {
     return;
@@ -64,7 +76,8 @@ void uf_numlock_on(void) {
   layer_on(get_tri_layer_lower_layer());
   uf_numlock_active = true;
 }
-
+*/
+/*
 void uf_numlock_off(void) {
   if (!uf_numlock_active) {
     return;
@@ -80,11 +93,4 @@ void uf_numlock_off(void) {
 
   uf_numlock_active = false;
 }
-
-void uf_numlock_toggle(void) {
-  if (uf_numlock_active) {
-    uf_numlock_off();
-  } else {
-    uf_numlock_on();
-  }
-}
+*/
