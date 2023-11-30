@@ -48,6 +48,11 @@ enum custom_keycodes {
 
 // clang-format off
 
+// Raise / Lower
+// These are intercepted in uf_process_record.
+#define UF_LOWR    LT(0,KC_DOWN)  // Send Backspace on tap, Delete on shift-tap, TL_LOWR on hold
+#define UF_UPPR    LT(0,KC_UP)    // Send Enter on tap, TL_UPPR on hold
+
 // _QWERTY
 
 #define UF_Z        LSFT_T(KC_Z)
@@ -78,10 +83,15 @@ enum custom_keycodes {
 #define UF_F12      RSFT_T(KC_F12)
 
 // vscode & macos shortcuts
+
 #define UF_FMT     S(A(KC_F))     // Shift-Alt-F -- Format code
 #define UF_PET     S(G(KC_LBRC))  // Shift-Cmd-[ -- Previous editor/browser/iTerm tab
 #define UF_NET     S(G(KC_RBRC))  // Shift-Cmd-] -- Next editor/browser/iTerm tab
-#define UF_NAPP     G(KC_TAB)     // Cmd-Tab     -- Next App
-#define UF_NWIN     G(KC_GRV)     // Cmd-`       -- Next Window of App
+#define UF_SCAP    S(G(KC_4))     // Shift-Cmd-4 -- Capture a portion of the screen
+
+// UF_NAPP doesn't work as desired because the OS expects CMD to be held across one or more TABs.
+// Tapping CMD+TAB effectively toggles between the two most current apps.
+// #define UF_NAPP    LCMD(KC_TAB)   // Cmd-Tab     -- Next App
+// #define UF_NWIN    LCMD(KC_GRV)   // Cmd-`       -- Next Window of App
 
 // clang-format on

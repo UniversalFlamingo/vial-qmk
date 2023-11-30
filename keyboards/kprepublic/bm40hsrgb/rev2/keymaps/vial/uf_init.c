@@ -1,7 +1,10 @@
 
+#include QMK_KEYBOARD_H
+
 // clang-format off
 
 #include "config.h"
+#include "uf_numlock.h"
 
 // clang-format on
 
@@ -11,9 +14,9 @@
 
 #ifdef VIAL_ENABLE
 #  include "vial.h"
-#  ifdef VIAL_KEY_OVERRIDE_ENABLE
+#  if defined(VIAL_KEY_OVERRIDE_ENABLE) && defined(UF_KEY_OVERRIDE_ENABLE)
 #    include "dynamic_keymap.h"
-extern const key_override_t **uf_key_overrides;
+#    include "uf_key_overrides.h"
 #  endif
 #  if defined(VIAL_TAP_DANCE_ENABLE) && defined(UF_TAP_DANCE_ENABLE)
 #    include "dynamic_keymap.h"
@@ -50,4 +53,6 @@ void keyboard_post_init_user(void) {
     dynamic_keymap_set_tap_dance(i, &uf_tap_dances[i]);
   }
 #endif
+
+  uf_numlock_init();
 }

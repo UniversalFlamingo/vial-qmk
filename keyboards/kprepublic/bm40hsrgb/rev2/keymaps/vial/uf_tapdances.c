@@ -21,7 +21,7 @@
 #include "quantum_keycodes.h"
 #include "tri_layer.h"
 
-#if defined(VIAL_ENABLE) && defined(VIAL_TAP_DANCE_ENABLE)
+#if defined(VIAL_ENABLE) && defined(VIAL_TAP_DANCE_ENABLE) && defined(UF_TAP_DANCE_ENABLE)
 #  include "vial.h"
 // clang-format off
 vial_tap_dance_entry_t uf_tap_dances[] = {

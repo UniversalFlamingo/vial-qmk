@@ -33,10 +33,26 @@ static uint8_t uf_previous_animation = 0;
 #  define RESTORE_PREVIOUS_ANIMATION
 #endif
 
+void uf_numlock_init(void) {
+  SAVE_CURRENT_ANIMATION
+  if (uf_check_os_numlock_state()) {
+    tap_code(KC_NUM_LOCK);
+  }
+}
+
+bool uf_check_os_numlock_state(void) {
+  led_t led_state = host_keyboard_led_state();
+  return led_state.num_lock;
+}
+
+bool uf_is_numlock_on(void) { return uf_numlock_active; }
+
 void uf_numlock_on(void) {
   if (uf_numlock_active) {
     return;
   }
+
+  tap_code(KC_NUM_LOCK);
 
   SAVE_CURRENT_ANIMATION
 
@@ -53,6 +69,9 @@ void uf_numlock_off(void) {
   if (!uf_numlock_active) {
     return;
   }
+
+  tap_code(KC_NUM_LOCK);
+
   //   rgb_matrix_enable_noeeprom();
   //   rgblight_enable_noeeprom();
   layer_off(get_tri_layer_lower_layer());
@@ -68,7 +87,4 @@ void uf_numlock_toggle(void) {
   } else {
     uf_numlock_on();
   }
-  tap_code(KC_NUM_LOCK);
 }
-
-bool uf_is_numlock_on(void) { return uf_numlock_active; }

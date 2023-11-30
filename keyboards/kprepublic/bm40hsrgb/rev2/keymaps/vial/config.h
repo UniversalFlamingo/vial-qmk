@@ -60,5 +60,5 @@
 #  define NO_PRINT
 #endif
 
-#define UF_TAP_DANCE_ENABLE
+// #define UF_TAP_DANCE_ENABLE
 #define UF_KEY_OVERRIDE_ENABLE
