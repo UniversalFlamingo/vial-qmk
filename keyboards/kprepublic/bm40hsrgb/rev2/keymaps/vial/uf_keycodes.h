@@ -48,50 +48,70 @@ enum custom_keycodes {
 
 // clang-format off
 
-// Raise / Lower
-// These are intercepted in uf_process_record.
-#define UF_LOWR    LT(0,KC_DOWN)  // Send Backspace on tap, Delete on shift-tap, TL_LOWR on hold
-#define UF_UPPR    LT(0,KC_UP)    // Send Enter on tap, TL_UPPR on hold
 
 // _QWERTY
-
-#define UF_Z        LSFT_T(KC_Z)
-#define UF_SLSH     RSFT_T(KC_SLSH)
-
-#define UF_HOME     LCTL_T(KC_HOME)
-#define UF_PGDN     LOPT_T(KC_PGDN)
-#define UF_PGUP     KC_PGUP
-#define UF_END      LCMD_T(KC_END)
-
-#define UF_LEFT     RCMD_T(KC_LEFT)
-#define UF_DOWN     KC_DOWN
-#define UF_UP       ROPT_T(KC_UP)
-#define UF_RIGHT    RCTL_T(KC_RIGHT)
+    // Row 0
+    #define UF_LPRN     KC_LPRN     // Shift ( is ) -- See uf_key_overrides.c
+    #define UF_LBRC     KC_LBRC     // Shift [ is ] -- See uf_key_overrides.c
+    #define UF_LCBR     KC_LCBR     // Shift { is } -- See uf_key_overrides.c
+    // Row 1
+    #define UF_S        LOPT_T(KC_S)
+    #define UF_F        LCMD_T(KC_F)
+    #define UF_J        RCMD_T(KC_J)
+    #define UF_L        ROPT_T(KC_L)
+    // Row 2
+    #define UF_Z        LSFT_T(KC_Z)
+    #define UF_SLSH     RSFT_T(KC_SLSH)
+    // Row 3
+    #define UF_ESC      LCTL_T(KC_ESCAPE)
+    #define UF_HOME     LOPT_T(KC_HOME)
+    #define UF_PGDN     KC_PGDN
+    #define UF_END      LCMD_T(KC_END)
+    #define UF_LOWR     LT(0,KC_DOWN)  // Send Backspace on tap, Delete on shift-tap, TL_LOWR on hold
+    #define UF_SPC      KC_SPACE
+    #define UF_UPPR     LT(0,KC_UP)    // Send Tab on tap, TL_UPPR on hold
+    #define UF_LEFT     RCMD_T(KC_LEFT)
+    #define UF_DOWN     KC_DOWN
+    #define UF_RIGHT    ROPT_T(KC_RIGHT)
+    #define UF_ENT      RCTL_T(KC_ENTER)
 
 // _LOWER
-
-#define UF_PMNS     RSFT_T(KC_PMNS)
-
-#define UF_PENT     RCMD_T(KC_PENT)
-#define UF_P0       KC_P0
-#define UF_PDOT     ROPT_T(KC_PDOT)
-#define UF_PPLS     RCTL_T(KC_PPLS)
+    // Row 0
+    #define UF_FMT      S(A(KC_F))      // Shift-Alt-F              -- Format code
+    #define UF_PSLS     KC_PSLS         // Shift numpad / is |      -- See uf_key_overrides.c
+    // Row 1
+    #define UF_COPY     LGUI(KC_C)
+    #define UF_UNDT     LGUI(KC_LBRC)   // Cmd-[                    -- Undent
+    #define UF_INDT     LGUI(KC_RBRC)   // Cmd-]                    -- Indent
+    #define UF_PAST     LGUI(KC_V)      // Shift numpad * is "      -- See uf_key_overrides.c
+    // Row 2
+    #define UF_PET      S(G(KC_LBRC))  // Shift-Cmd-[               -- Previous editor/browser/iTerm tab
+    #define UF_NET      S(G(KC_RBRC))  // Shift-Cmd-]               -- Next editor/browser/iTerm tab
+    #define UF_PMNS     RSFT_T(KC_PMNS)
+    // Row 3
+    #define UF_PENT     RCMD_T(KC_PENT)
+    #define UF_P0       KC_P0           // Shift numpad 0 is PgDn   -- See uf_key_overrides.c
+    #define UF_PDOT     ROPT_T(KC_PDOT) // Shift numpad . is End    -- See uf_key_overrides.c
+    #define UF_PPLS     RCTL_T(KC_PPLS) // Shift numpad + is Enter  -- See uf_key_overrides.c
 
 // _RAISE
+    // Row 0
+    #define UF_LPCB     KC_LPRN         // Shift ( is {     -- See uf_key_overrides.c
+    #define UF_RPCB     KC_RPRN         // Shift ) is }     -- See uf_key_overrides.c
+    // Row 1
+    // Row 2
+    #define UF_F1       LSFT_T(KC_F1)
+    #define UF_F12      RSFT_T(KC_F12)
+    // Row 3
+    #define UF_PGUP     KC_PGUP
+    #define UF_UP       KC_UP
 
-#define UF_F1       LSFT_T(KC_F1)
-#define UF_F12      RSFT_T(KC_F12)
 
-// vscode & macos shortcuts
-
-#define UF_FMT     S(A(KC_F))     // Shift-Alt-F -- Format code
-#define UF_PET     S(G(KC_LBRC))  // Shift-Cmd-[ -- Previous editor/browser/iTerm tab
-#define UF_NET     S(G(KC_RBRC))  // Shift-Cmd-] -- Next editor/browser/iTerm tab
-#define UF_SCAP    S(G(KC_4))     // Shift-Cmd-4 -- Capture a portion of the screen
-
-// UF_NAPP doesn't work as desired because the OS expects CMD to be held across one or more TABs.
-// Tapping CMD+TAB effectively toggles between the two most current apps.
-// #define UF_NAPP    LCMD(KC_TAB)   // Cmd-Tab     -- Next App
-// #define UF_NWIN    LCMD(KC_GRV)   // Cmd-`       -- Next Window of App
-
-// clang-format on
+// _ADJUST
+    // Row 0
+    #define UF_NAPP    LCMD(KC_TAB)   // Cmd-Tab     -- Prev app toggle
+    // Row 1
+    #define UF_NWIN    LCMD(KC_GRV)   // Cmd-`       -- Next Window of App
+    // Row 2
+    #define UF_SCAP    S(G(KC_4))     // Shift-Cmd-4 -- Capture a portion of the screen
+    // Row 3

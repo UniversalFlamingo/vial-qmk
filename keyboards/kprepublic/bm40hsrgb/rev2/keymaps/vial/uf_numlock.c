@@ -36,7 +36,7 @@ static uint8_t uf_previous_animation = 0;
 void uf_numlock_init(void) {
   SAVE_CURRENT_ANIMATION
   if (uf_check_os_numlock_state()) {
-    tap_code(KC_NUM_LOCK);
+    // tap_code(KC_NUM_LOCK);
   }
 }
 
@@ -64,7 +64,7 @@ void uf_numlock_on(void) {
     return;
   }
 
-  tap_code(KC_NUM_LOCK);
+//   tap_code(KC_NUM_LOCK);
 
   SAVE_CURRENT_ANIMATION
 
@@ -83,7 +83,7 @@ void uf_numlock_off(void) {
     return;
   }
 
-  tap_code(KC_NUM_LOCK);
+//   tap_code(KC_NUM_LOCK);
 
   //   rgb_matrix_enable_noeeprom();
   //   rgblight_enable_noeeprom();

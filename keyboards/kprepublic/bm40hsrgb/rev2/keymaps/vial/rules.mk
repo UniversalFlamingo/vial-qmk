@@ -34,9 +34,9 @@ SECURE_ENABLE = no
 SPACE_CADET_ENABLE = no
 
 SRC += uf_init.c
+SRC += uf_key_overrides.c
 SRC += uf_mousejiggler.c
 SRC += uf_numlock.c
 SRC += uf_process_record.c
 SRC += uf_process_rgb_keycodes.c
-SRC += uf_tapdances.c
-SRC += uf_key_overrides.c
+# SRC += uf_tapdances.c

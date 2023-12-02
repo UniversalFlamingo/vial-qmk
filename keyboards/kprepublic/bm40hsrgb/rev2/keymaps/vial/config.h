@@ -11,12 +11,13 @@
 #  define VIAL_KEYBOARD_UID \
     { 0x55, 0x53, 0xE7, 0xBC, 0x9D, 0x8E, 0x02, 0x7B }
 
+#  define VIAL_KEY_OVERRIDE_ENTRIES 10
+
 #  define DYNAMIC_KEYMAP_LAYER_COUNT 4
 #  define DYNAMIC_KEYMAP_MACRO_COUNT 4
 
 #  define LAYER_STATE_8BIT
 
-#  define VIAL_KEY_OVERRIDE_ENTRIES 10
 
 // Locking
 

@@ -15,6 +15,7 @@
 
 #  define L_QWERTY (1 << _QWERTY)
 #  define L_LOWER (1 << _LOWER)
+#  define L_RAISE (1 << _RAISE)
 #  define L_ALL ~0
 
 #  if defined(VIAL_ENABLE) && defined(VIAL_KEY_OVERRIDE_ENABLE)
@@ -32,9 +33,12 @@ KO(lcbr, MOD_MASK_SHIFT, KC_LCBR, KC_RCBR, L_QWERTY);  // Shift { is }
 
 KO(psls, MOD_MASK_SHIFT, KC_PSLS, KC_PIPE, L_LOWER);  // Shift numpad / is |
 KO(past, MOD_MASK_SHIFT, KC_PAST, KC_DQUO, L_LOWER);  // Shift numpad * is "
-KO(ppls, MOD_MASK_SHIFT, KC_PPLS, KC_END, L_LOWER);   // Shift numpad + is End
-KO(pdot, MOD_MASK_SHIFT, KC_PDOT, KC_PGUP, L_LOWER);  // Shift numpad . is PgUp
+KO(ppls, MOD_MASK_SHIFT, KC_PPLS, KC_ENT, L_LOWER);   // Shift numpad + is Enter
+KO(pdot, MOD_MASK_SHIFT, KC_PDOT, KC_END, L_LOWER);   // Shift numpad . is End
 KO(pzer, MOD_MASK_SHIFT, KC_P0, KC_PGDN, L_LOWER);    // Shift numpad 0 is PgDn
+
+KO(lpcb, MOD_MASK_SHIFT, KC_LPRN, KC_LCBR, L_RAISE);  // Shift ( is {
+KO(rpcb, MOD_MASK_SHIFT, KC_RPRN, KC_RCBR, L_RAISE);  // Shift ) is }
 
 // KO(bspc, MOD_MASK_SHIFT, KC_BSPC, KC_DEL, L_ALL);   // Shift BackSpace is Delete
 // KO(fspc, MOD_MASK_SHIFT, KC_SPACE, KC_DEL, L_ALL);  // Shift (Forward)Space is Delete
@@ -60,6 +64,11 @@ const key_override_t** KEY_OVERRIDES = (const key_override_t*[]){
     &ppls_key_override,
     &pdot_key_override,
     &pzer_key_override,
+
+    // L_RAISE
+
+    &lpcb_key_override,
+    &rpcb_key_override,
 
     // all
 

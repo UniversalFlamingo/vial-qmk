@@ -35,7 +35,7 @@ void uf_magic_backspace(uint16_t trigger_keycode, uint16_t on_tap_keycode, keyre
   uint8_t effective_mods = mods | weak_mods;
   uint8_t shifted = effective_mods & MOD_MASK_SHIFT;
 
-  if (record->event.pressed) {
+  if (!record->event.pressed) {
     return;
   }
 
@@ -80,12 +80,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // on hold press
         process_tri_layer(QK_TRI_LAYER_LOWER, record);
         if (uf_is_numlock_off()) {
-          tap_code(KC_NUM_LOCK);
+          //   tap_code(KC_NUM_LOCK);
         }
       } else if (uf_is_numlock_off()) {
         // on hold release
         process_tri_layer(QK_TRI_LAYER_LOWER, record);
-        tap_code(KC_NUM_LOCK);
+        // tap_code(KC_NUM_LOCK);
       } else {
       }
       return false;
@@ -94,7 +94,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       unregister_code(keycode);
       if (record->tap.count) {
         if (record->event.pressed) {
-          tap_code(KC_ENTER);
+          tap_code(KC_TAB);
         }
       } else {
         process_tri_layer(QK_TRI_LAYER_UPPER, record);
