@@ -114,6 +114,43 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case KC_SPACE:
       uf_magic_backspace(keycode, keycode, record);
       return false;
+
+    case UF_FOLD:
+      // Send Cmd-K then hold Cmd until a character is typed.
+      tap_code16(LGUI(KC_K));
+      set_oneshot_mods(MOD_BIT(KC_LGUI));
+      return false;
+
+    case UF_UNDT:  // undent, shift + undent sends indent
+      if (record->event.pressed) {
+        if ((get_mods() | get_weak_mods()) & MOD_MASK_SHIFT) {
+          tap_code16(LGUI(KC_RBRC));  // indent
+        } else {
+          tap_code16(LGUI(KC_LBRC));  // undent
+        }
+      }
+      return false;
+    case UF_INDT:  // indent
+      if (record->event.pressed) {
+        tap_code16(LGUI(KC_RBRC));
+      }
+      return false;
+
+    case UF_PTAB:  // previous tab, shift + previuos tab sends next tab
+      if (record->event.pressed) {
+
+        if ((get_mods() | get_weak_mods()) & MOD_MASK_SHIFT) {
+          tap_code16(S(G(KC_LBRC)));  // next tab
+        } else {
+          tap_code16(S(G(KC_RBRC)));  // previous tab
+        }
+      }
+      return false;
+    case UF_NTAB:  // next tab
+      if (record->event.pressed) {
+        tap_code16(S(G(KC_RBRC)));
+      }
+      return false;
   }
 
   return true;

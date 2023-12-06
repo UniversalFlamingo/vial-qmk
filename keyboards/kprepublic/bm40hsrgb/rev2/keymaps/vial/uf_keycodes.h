@@ -26,6 +26,14 @@ enum custom_keycodes {
 
   UF_NLTOG,  // Toggle numlock (on lower layer)
 
+  UF_UNDT,   // LGUI(KC_LBRC) -- Cmd-[       -- Undent
+  UF_INDT,   // LGUI(KC_RBRC) -- Cmd-]       -- Indent
+
+  UF_PTAB,   // S(G(KC_LBRC)) -- Shift-Cmd-[ -- Previous editor/browser/iTerm tab
+  UF_NTAB,   // S(G(KC_RBRC)) -- Shift-Cmd-] -- Next editor/browser/iTerm tab
+
+  UF_FOLD,   // Send Cmd-k OSM(MOD_LGUI)  Expects user to type a number (or "j") for the fold level.
+
   // B_RGBL_TG,           // rgblight_toggle_noeeprom   -- LEDs below the PCB (i.e. - underlight)
   // B_RGBM_TG,           // rgb_matrix_toggle_noeeprom -- per-key LEDs
 
@@ -48,18 +56,24 @@ enum custom_keycodes {
 
 // clang-format off
 
+// Map some vanilla KC_* values that we override so that they are easier to see in the keymap.
+// See uf_key_overrides.c
+
+#define UF_LPRN     KC_LPRN     // Shift ( is ) (qwerty) or { (raise)
+#define UF_LBRC     KC_LBRC     // Shift [ is ] (qwerty)
+#define UF_LCBR     KC_LCBR     // Shift { is } (qwerty)
+#define UF_RPRN     KC_RPRN     // Shift ) is } (raise)
+
 
 // _QWERTY
-    // Row 0
-    #define UF_LPRN     KC_LPRN     // Shift ( is ) -- See uf_key_overrides.c
-    #define UF_LBRC     KC_LBRC     // Shift [ is ] -- See uf_key_overrides.c
-    #define UF_LCBR     KC_LCBR     // Shift { is } -- See uf_key_overrides.c
-    // Row 1
+    // home row mods
+    #define UF_A        LSFT_T(KC_A)
     #define UF_S        LOPT_T(KC_S)
     #define UF_F        LCMD_T(KC_F)
     #define UF_J        RCMD_T(KC_J)
     #define UF_L        ROPT_T(KC_L)
-    // Row 2
+    #define UF_SCLN     RSFT_T(KC_SCLN)
+    // I prefer shift on the next row
     #define UF_Z        LSFT_T(KC_Z)
     #define UF_SLSH     RSFT_T(KC_SLSH)
     // Row 3
@@ -78,16 +92,11 @@ enum custom_keycodes {
 // _LOWER
     // Row 0
     #define UF_FMT      S(A(KC_F))      // Shift-Alt-F              -- Format code
-    #define UF_PSLS     KC_PSLS         // Shift numpad / is |      -- See uf_key_overrides.c
+    #define UF_PMNS     KC_PMNS         // Shift numpad - is |      -- See uf_key_overrides.c
     // Row 1
-    #define UF_COPY     LGUI(KC_C)
-    #define UF_UNDT     LGUI(KC_LBRC)   // Cmd-[                    -- Undent
-    #define UF_INDT     LGUI(KC_RBRC)   // Cmd-]                    -- Indent
-    #define UF_PAST     LGUI(KC_V)      // Shift numpad * is "      -- See uf_key_overrides.c
+    #define UF_PAST     KC_PAST         // Shift numpad * is "      -- See uf_key_overrides.c
     // Row 2
-    #define UF_PET      S(G(KC_LBRC))  // Shift-Cmd-[               -- Previous editor/browser/iTerm tab
-    #define UF_NET      S(G(KC_RBRC))  // Shift-Cmd-]               -- Next editor/browser/iTerm tab
-    #define UF_PMNS     RSFT_T(KC_PMNS)
+    #define UF_PSLS     RSFT_T(KC_PSLS)
     // Row 3
     #define UF_PENT     RCMD_T(KC_PENT)
     #define UF_P0       KC_P0           // Shift numpad 0 is PgDn   -- See uf_key_overrides.c

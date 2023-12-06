@@ -4,6 +4,7 @@
 
 #include "config.h"
 #include "uf_key_overrides.h"
+#include "uf_keycodes.h"
 #include "uf_keymap.h"
 
 // clang-format on
@@ -27,21 +28,20 @@
 #  define KO(var, trigger_mods, trigger_key, replacement_key, layers) \
     const key_override_t var##_key_override = ko_make_with_layers_negmods_and_options(trigger_mods, trigger_key, replacement_key, layers, 0, uf_options_default)
 
-KO(lprn, MOD_MASK_SHIFT, KC_LPRN, KC_RPRN, L_QWERTY);  // Shift ( is )
-KO(lbrc, MOD_MASK_SHIFT, KC_LBRC, KC_RBRC, L_QWERTY);  // Shift [ is ]
-KO(lcbr, MOD_MASK_SHIFT, KC_LCBR, KC_RCBR, L_QWERTY);  // Shift { is }
+// Only use this for vanilla KC_* and UF_* that are defined as vanilla KC_*
+// In general, map vanilla KC_* that will be overridden to UF_* defines so
+// that they are easier to see in the keymap.
+// Use UF_* enums and process_record_user for non-vanilla things.
 
-KO(psls, MOD_MASK_SHIFT, KC_PSLS, KC_PIPE, L_LOWER);  // Shift numpad / is |
-KO(past, MOD_MASK_SHIFT, KC_PAST, KC_DQUO, L_LOWER);  // Shift numpad * is "
-KO(ppls, MOD_MASK_SHIFT, KC_PPLS, KC_ENT, L_LOWER);   // Shift numpad + is Enter
-KO(pdot, MOD_MASK_SHIFT, KC_PDOT, KC_END, L_LOWER);   // Shift numpad . is End
-KO(pzer, MOD_MASK_SHIFT, KC_P0, KC_PGDN, L_LOWER);    // Shift numpad 0 is PgDn
+KO(lprn, MOD_MASK_SHIFT, UF_LPRN, KC_RPRN, L_QWERTY);  // Shift ( is )
+KO(lbrc, MOD_MASK_SHIFT, UF_LBRC, KC_RBRC, L_QWERTY);  // Shift [ is ]
+KO(lcbr, MOD_MASK_SHIFT, UF_LCBR, KC_RCBR, L_QWERTY);  // Shift { is }
 
-KO(lpcb, MOD_MASK_SHIFT, KC_LPRN, KC_LCBR, L_RAISE);  // Shift ( is {
-KO(rpcb, MOD_MASK_SHIFT, KC_RPRN, KC_RCBR, L_RAISE);  // Shift ) is }
+KO(psls, MOD_MASK_SHIFT, UF_PMNS, KC_PIPE, L_LOWER);  // Shift numpad - is |
+KO(past, MOD_MASK_SHIFT, UF_PAST, KC_DQUO, L_LOWER);  // Shift numpad * is "
 
-// KO(bspc, MOD_MASK_SHIFT, KC_BSPC, KC_DEL, L_ALL);   // Shift BackSpace is Delete
-// KO(fspc, MOD_MASK_SHIFT, KC_SPACE, KC_DEL, L_ALL);  // Shift (Forward)Space is Delete
+KO(lpcb, MOD_MASK_SHIFT, UF_LPRN, KC_LCBR, L_RAISE);  // Shift ( is {
+KO(rpcb, MOD_MASK_SHIFT, UF_RPRN, KC_RCBR, L_RAISE);  // Shift ) is }
 
 #  if defined(VIAL_ENABLE) && defined(VIAL_KEY_OVERRIDE_ENABLE)
 #    define KEY_OVERRIDES uf_key_overrides
@@ -61,9 +61,6 @@ const key_override_t** KEY_OVERRIDES = (const key_override_t*[]){
 
     &psls_key_override,
     &past_key_override,
-    &ppls_key_override,
-    &pdot_key_override,
-    &pzer_key_override,
 
     // L_RAISE
 
