@@ -34,6 +34,7 @@ SECURE_ENABLE = no
 SPACE_CADET_ENABLE = no
 
 SRC += uf_init.c
+SRC += uf_autocorrect.c
 SRC += uf_key_overrides.c
 SRC += uf_mousejiggler.c
 SRC += uf_numlock.c

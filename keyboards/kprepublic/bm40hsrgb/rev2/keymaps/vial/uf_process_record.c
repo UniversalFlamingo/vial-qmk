@@ -11,17 +11,14 @@
 #include "uf_mousejiggler.h"
 #include "uf_numlock.h"
 #include "uf_process_rgb_keycodes.h"
+#include "uf_autocorrect.h"
 
 // clang-format on
 
-#include "action.h"
 #include "action_util.h"
-#include "keycodes.h"
-#include "keymap_us.h"
 #include "process_tri_layer.h"
 #include "quantum.h"
 #include "quantum_keycodes.h"
-#include "vial_ensure_keycode.h"
 
 void matrix_scan_user(void) {
 #ifdef MOUSEJIGGLER_ENABLE
@@ -58,12 +55,23 @@ void uf_magic_backspace(uint16_t trigger_keycode, uint16_t on_tap_keycode, keyre
   }
 }
 
+void post_process_record_user(uint16_t keycode, keyrecord_t *record) { uf_autocorrect_post_process_record(keycode, record); }
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  //
+
+  // Handle some common typos
+  if (record->event.pressed && uf_autocorrect_process_record(keycode, record)) {
+    return false;
+  }
+
   if (!uf_process_rgb_keycodes(keycode, record)) {
     return false;
   }
 
   switch (keycode) {
+      //
+
     case UF_NLTOG:
       // UF_NLTOG is on _LOWER so we can only get here if UF_LOWR is pressed
       if (record->event.pressed) {
@@ -138,7 +146,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case UF_PTAB:  // previous tab, shift + previuos tab sends next tab
       if (record->event.pressed) {
-
         if ((get_mods() | get_weak_mods()) & MOD_MASK_SHIFT) {
           tap_code16(S(G(KC_LBRC)));  // next tab
         } else {

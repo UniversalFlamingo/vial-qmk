@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [_LOWER] = LAYOUT_ortho_4x12_1x2uC(
     KC_ESC , KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_QUOT, UF_FMT , KC_NO  , KC_P7,   KC_P8, KC_P9,   UF_PMNS, // - and |
-    KC_TAB , KC_DLR , KC_PERC, KC_CIRC, KC_NO  , UF_UNDT, KC_NO  , UF_PAST, KC_P4,   KC_P5, KC_P6,   UF_PAST, // * and "
+    KC_TAB , KC_DLR , KC_PERC, KC_CIRC, KC_NO  , UF_UNDT, KC_NO  , KC_NO  , KC_P4,   KC_P5, KC_P6,   UF_PAST, // * and "
     KC_LSFT, KC_EXLM, KC_AT  , KC_HASH, KC_NO  , UF_PTAB, KC_NO  , UF_FOLD, KC_P1,   KC_P2, KC_P3,   UF_PSLS, // /
     _______, _______, _______, _______, _______, _______,              _______, UF_PENT, UF_P0, UF_PDOT, UF_PPLS  // +
 ),
