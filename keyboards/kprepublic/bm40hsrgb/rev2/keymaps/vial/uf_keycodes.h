@@ -56,7 +56,7 @@ enum custom_keycodes {
 
 // clang-format off
 
-// Map some vanilla KC_* values that we override so that they are easier to see in the keymap.
+// Map some vanilla KC_* values that we override so that they stand out in the keymap.
 // See uf_key_overrides.c
 
 #define UF_LPRN     KC_LPRN     // Shift ( is ) (qwerty) or { (raise)
@@ -67,12 +67,10 @@ enum custom_keycodes {
 
 // _QWERTY
     // home row mods
-    #define UF_A        LSFT_T(KC_A)
     #define UF_S        LOPT_T(KC_S)
     #define UF_F        LCMD_T(KC_F)
     #define UF_J        RCMD_T(KC_J)
     #define UF_L        ROPT_T(KC_L)
-    #define UF_SCLN     RSFT_T(KC_SCLN)
     // I prefer shift on the next row
     #define UF_Z        LSFT_T(KC_Z)
     #define UF_SLSH     RSFT_T(KC_SLSH)
@@ -83,6 +81,7 @@ enum custom_keycodes {
     #define UF_END      LCMD_T(KC_END)
     #define UF_LOWR     LT(0,KC_DOWN)  // Send Backspace on tap, Delete on shift-tap, TL_LOWR on hold
     #define UF_SPC      KC_SPACE
+    #define UF_BSPC     KC_BSPC
     #define UF_UPPR     LT(0,KC_UP)    // Send Tab on tap, TL_UPPR on hold
     #define UF_LEFT     RCMD_T(KC_LEFT)
     #define UF_DOWN     KC_DOWN
@@ -99,15 +98,17 @@ enum custom_keycodes {
     #define UF_PSLS     RSFT_T(KC_PSLS)
     // Row 3
     #define UF_PENT     RCMD_T(KC_PENT)
-    #define UF_P0       KC_P0           // Shift numpad 0 is PgDn   -- See uf_key_overrides.c
-    #define UF_PDOT     ROPT_T(KC_PDOT) // Shift numpad . is End    -- See uf_key_overrides.c
-    #define UF_PPLS     RCTL_T(KC_PPLS) // Shift numpad + is Enter  -- See uf_key_overrides.c
+    #define UF_P0       KC_P0
+    #define UF_PDOT     ROPT_T(KC_PDOT)
+    #define UF_PPLS     RCTL_T(KC_PPLS)
 
 // _RAISE
     // Row 0
     #define UF_LPCB     KC_LPRN         // Shift ( is {     -- See uf_key_overrides.c
     #define UF_RPCB     KC_RPRN         // Shift ) is }     -- See uf_key_overrides.c
     // Row 1
+    #define UF_9        KC_9            // Shift 9 is [     -- See uf_key_overrides.c
+    #define UF_0        KC_0            // Shift 0 is ]     -- See uf_key_overrides.c
     // Row 2
     #define UF_F1       LSFT_T(KC_F1)
     #define UF_F12      RSFT_T(KC_F12)
@@ -118,9 +119,9 @@ enum custom_keycodes {
 
 // _ADJUST
     // Row 0
-    #define UF_NAPP    LCMD(KC_TAB)   // Cmd-Tab     -- Prev app toggle
+    #define UF_NAPP    LCMD(KC_GRV)   // Cmd-`       -- Next Window of App
     // Row 1
-    #define UF_NWIN    LCMD(KC_GRV)   // Cmd-`       -- Next Window of App
+    #define UF_NWIN    LCMD(KC_TAB)   // Cmd-Tab     -- Prev app toggle
     // Row 2
     #define UF_SCAP    S(G(KC_4))     // Shift-Cmd-4 -- Capture a portion of the screen
     // Row 3

@@ -115,11 +115,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
 
-    case KC_BSPC:
+    case UF_BSPC:
       uf_magic_backspace(keycode, keycode, record);
       return false;
 
-    case KC_SPACE:
+    case UF_SPC:
       uf_magic_backspace(keycode, keycode, record);
       return false;
 
@@ -132,6 +132,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case UF_UNDT:  // undent, shift + undent sends indent
       if (record->event.pressed) {
         if ((get_mods() | get_weak_mods()) & MOD_MASK_SHIFT) {
+          del_mods(MOD_MASK_SHIFT);
           tap_code16(LGUI(KC_RBRC));  // indent
         } else {
           tap_code16(LGUI(KC_LBRC));  // undent
@@ -147,6 +148,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case UF_PTAB:  // previous tab, shift + previuos tab sends next tab
       if (record->event.pressed) {
         if ((get_mods() | get_weak_mods()) & MOD_MASK_SHIFT) {
+          del_mods(MOD_MASK_SHIFT);
           tap_code16(S(G(KC_LBRC)));  // next tab
         } else {
           tap_code16(S(G(KC_RBRC)));  // previous tab
